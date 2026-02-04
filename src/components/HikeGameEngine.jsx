@@ -64,7 +64,7 @@ const HikeGameEngine = ({ patrol }) => {
   const currentLevel = levels[currentLevelIndex];
 
   return (
-    <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', overflowY: 'auto', maxHeight: '80vh', padding: '10px' }}>
+    <div className="game-content">
       
       {!gameFinished ? (
         <>

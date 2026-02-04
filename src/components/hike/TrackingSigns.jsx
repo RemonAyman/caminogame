@@ -136,17 +136,36 @@ export const EnemiesMeetSign = ({ className }) => (
 );
 
 // 15. Electric Danger (خطر كهرباء) - Zigzag arrow
+// 15. Electric Danger (خطر كهرباء) - Zigzag arrow in Triangle
 export const ElectricDangerSign = ({ className }) => (
   <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="4">
-    <path d="M40 10 L60 10 L30 50 L70 50 L40 90" />
+    <path d="M50 10 L90 90 H10 Z" /> {/* Triangle container */}
+    <path d="M55 25 L65 25 L45 55 L70 55 L50 85" strokeWidth="3" /> {/* Lightning inside */}
   </svg>
 );
 
-// 16. End Point (نقطة النهاية) - Circle with dot
+// 16. End Point (نقطة النهاية) - Circle with dot inside AND dot outside
 export const EndPointSign = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="4">
+    <circle cx="40" cy="50" r="25" />
+    <circle cx="40" cy="50" r="4" fill="currentColor" /> {/* Inside */}
+    <circle cx="80" cy="30" r="5" fill="currentColor" /> {/* Outside (Top Right) */}
+  </svg>
+);
+
+// New: Arrived Camp (وصلنا المعسكر) - Circle with dot inside only
+export const ArrivedCampSign = ({ className }) => (
   <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="4">
     <circle cx="50" cy="50" r="30" />
     <circle cx="50" cy="50" r="5" fill="currentColor" />
+  </svg>
+);
+
+// New: Left Camp (خرجنا من المعسكر) - Empty circle with dot outside
+export const LeftCampSign = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="4">
+     <circle cx="40" cy="50" r="25" />
+     <circle cx="80" cy="30" r="5" fill="currentColor" /> {/* Outside (Top Right) */}
   </svg>
 );
 
@@ -154,7 +173,6 @@ export const EndPointSign = ({ className }) => (
 export const UncooperativeSign = ({ className }) => (
   <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
      <rect x="20" y="20" width="60" height="30" transform="skewX(-20)" />
-     {/* Actually image is Rhombus/Parallelogram? Text says "الاهالي في هذه المنطقة غير متعاونين" */}
      <path d="M20 50 L40 20 H80 L60 50 Z" />
   </svg>
 );
@@ -193,14 +211,14 @@ export const WindmillSign = ({ className }) => (
      <line x1="50" y1="90" x2="50" y2="40" />
      <path d="M50 40 L80 20" />
      <path d="M50 40 L20 20" />
-     <line x1="20" y1="20" x2="20" y2="40" /> {/* Vanes */}
+     <line x1="20" y1="20" x2="20" y2="40" /> 
      <line x1="80" y1="20" x2="80" y2="40" />
   </svg>
 );
 
 // 22. Gone Home (خرجنا من المعسكر بسلام / وصلنا الى المعسكر بسلام) - Circle with dot
-// (Reusing EndPointSign logic but name implies context)
-export const GoneHomeSign = EndPointSign;
+// (Reusing ArrivedCampSign logic logic)
+export const GoneHomeSign = ArrivedCampSign;
 
 // 23. Church (كنيسة)
 export const ChurchSign = ({ className }) => (
@@ -386,6 +404,8 @@ export const SignsMap = {
   enemies: EnemiesMeetSign,
   electric: ElectricDangerSign,
   end: EndPointSign,
+  arrived_camp: ArrivedCampSign,
+  left_camp: LeftCampSign,
   uncooperative: UncooperativeSign,
   cooperative: CooperativeSign,
   safe_way: SafeWaySign,

@@ -178,10 +178,32 @@ export const QUESTION_BANK = [
     question: "نهاية:",
     signId: 'end',
     answer: "نقطة النهاية",
-    hint1: "دائرة.",
-    hint2: "نقطة في المركز.",
-    explanation: "دائرة بداخلها نقطة تعني: نقطة النهاية.",
+    hint1: "دائرة ونقطتين.",
+    hint2: "واحدة بالداخل والأخرى بالخارج.",
+    explanation: "الدائرة التي بها نقطة داخلية ونقطة خارجية تعني: نقطة النهاية.",
     key: "نهاية"
+  },
+  {
+    id: 's17', type: 'sign', difficulty: 'medium', points: 2,
+    question: "حالة المعسكر:",
+    signId: 'arrived_camp',
+    answer: "وصلنا الى المعسكر بسلام",
+    accepted: ["وصلنا", "وصلنا المعسكر", "وصلنا بسلام"],
+    hint1: "دائرة ونقطة.",
+    hint2: "النقطة بالداخل.",
+    explanation: "دائرة وبداخلها نقطة تعني: وصلنا إلى المعسكر بسلام.",
+    key: "وصلنا"
+  },
+    {
+    id: 's18', type: 'sign', difficulty: 'medium', points: 2,
+    question: "مغادرة:",
+    signId: 'left_camp',
+    answer: "خرجنا من المعسكر بسلام",
+    accepted: ["خرجنا", "خرجنا من المعسكر", "غادرنا"],
+    hint1: "دائرة فارغة ونقطة.",
+    hint2: "النقطة بالخارج.",
+    explanation: "دائرة وبجوارها نقطة خارجية تعني: خرجنا من المعسكر بسلام.",
+    key: "خرجنا"
   },
   {
     id: 's15', type: 'sign', difficulty: 'medium', points: 2,
