@@ -1,13 +1,12 @@
 :root {
-  --primary: #ff4785;
-  --secondary: #00e5ff;
-  --accent: #7e5bef;
-  --bg-dark: #0f172a;
-  --bg-light: #1e293b;
-  --glass: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  --primary: #8B4513; /* SaddleBrown */
+  --secondary: #556B2F; /* DarkOliveGreen */
+  --accent: #DAA520; /* GoldenRod */
+  --bg-dark: #2F4F4F; /* DarkSlateGray */
+  --paper: #F5DEB3; /* Wheat */
+  --glass: rgba(245, 222, 179, 0.85); /* Parchment-like glass */
+  --glass-border: rgba(139, 69, 19, 0.4);
   --font-arabic: 'Cairo', sans-serif;
-  --font-english: 'Outfit', sans-serif;
 }
 
 * {
@@ -18,9 +17,9 @@
 
 body {
   font-family: var(--font-arabic);
-  background: url('/cell_adventure_bg_1770051694578.png') no-repeat center center fixed;
+  background: url('/scout_hike_map_bg_1770170435134.png') no-repeat center center fixed;
   background-size: cover;
-  color: white;
+  color: #3e2723;
   overflow: hidden;
   height: 100vh;
   width: 100vw;
@@ -35,7 +34,7 @@ body::before {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(47, 79, 79, 0.3); /* Dim overlay */
   z-index: -1;
 }
 
@@ -48,34 +47,36 @@ body::before {
 
 .glass-card {
   background: var(--glass);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  border: 4px solid var(--primary);
+  border-radius: 10px;
   padding: 2rem;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  color: #3e2723;
 }
 
 .btn-primary {
-  background: linear-gradient(45deg, var(--primary), var(--accent));
-  border: none;
+  background: linear-gradient(180deg, var(--secondary), #228B22);
+  border: 2px solid #006400;
   color: white;
   padding: 0.8rem 2rem;
-  border-radius: 50px;
+  border-radius: 5px;
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   font-size: 1.1rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
 .btn-primary:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 20px rgba(255, 71, 133, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.4);
 }
 
 .game-container {
   max-width: 1000px;
   width: 90%;
-  height: 80vh;
+  height: 85vh;
   margin: auto;
   position: relative;
   display: flex;
@@ -87,26 +88,28 @@ body::before {
 
 .footer {
   position: fixed;
-  bottom: 1rem;
+  bottom: 0.5rem;
   width: 100%;
   text-align: center;
-  font-size: 0.9rem;
-  opacity: 0.7;
+  font-size: 1rem;
+  color: white;
+  text-shadow: 1px 1px 3px black;
+  font-weight: bold;
 }
 
 h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: var(--primary);
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
 }
 
-.transition-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.hint-box {
+  background: #fff3cd;
+  border: 1px dashed #fab005;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  text-align: right;
+  color: #664d03;
 }
