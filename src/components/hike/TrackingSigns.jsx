@@ -45,3 +45,28 @@ export const DangerSign = ({ className }) => (
     <text x="45" y="70" fontSize="40" stroke="none" fill="currentColor">!</text>
   </svg>
 );
+
+export const RiverSign = ({ className }) => (
+  <svg viewBox="0 0 100 50" className={className} stroke="currentColor" fill="none" strokeWidth="5">
+    <path d="M10 25 C 30 10, 50 40, 90 25" />
+    <path d="M10 40 C 30 25, 50 55, 90 40" />
+    <text x="30" y="15" fontSize="12" stroke="none" fill="currentColor">نهر</text>
+  </svg>
+);
+
+export const MosqueSign = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="5">
+    <rect x="20" y="40" width="60" height="40" />
+    <circle cx="50" cy="40" r="20" /> {/* Dome */}
+    <path d="M50 10 L50 20" /> {/* Spire */}
+    <path d="M45 15 L55 15" /> {/* Crescent base */}
+  </svg>
+);
+
+export const ChurchSign = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="5">
+    <rect x="20" y="40" width="60" height="40" />
+    <path d="M50 10 L20 40 H80 Z" /> {/* Steeple */}
+    <path d="M50 10 L50 25 M40 18 H60" /> {/* Cross */}
+  </svg>
+);

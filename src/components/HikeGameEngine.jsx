@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import SignInterpretation from './hike/SignInterpretation';
 import MapEncounter from './hike/MapEncounter';
-import { GoneHomeSign } from './hike/TrackingSigns';
+import ObservationStage from './hike/ObservationStage';
+import PatrolReport from './PatrolReport';
 
 const HikeGameEngine = ({ patrol }) => {
   const [station, setStation] = useState(1);
+  const [score, setScore] = useState(0); // Track successful solves
   
-  const nextStation = () => setStation(s => s + 1);
+  const nextStation = () => {
+    setScore(s => s + 1);
+    setStation(s => s + 1);
+  };
 
   const renderStation = () => {
     switch (station) {
@@ -20,18 +25,9 @@ const HikeGameEngine = ({ patrol }) => {
       case 2:
         return <MapEncounter onComplete={nextStation} />;
       case 3:
-        return (
-          <div className="glass-card">
-            <h3>نهاية الرحلة</h3>
-            <div style={{ width: '100px', height: '100px', margin: '2rem auto', color: '#27ae60' }}>
-              <GoneHomeSign />
-            </div>
-            <p>لقد وصلت الطليعة بسلام إلى أرض المخيم!</p>
-            <p>أحسنت قيادة {patrol.patrolName} يا رائد {patrol.raedName}.</p>
-            <p className="hint-box">رسالة: "خرجنا من المعسكر بسلام - وعدنا بسلام"</p>
-            <button className="btn-primary" onClick={() => window.location.reload()}>رحلة جديدة</button>
-          </div>
-        );
+        return <ObservationStage onCorrect={nextStation} />;
+      case 4:
+        return <PatrolReport patrol={patrol} score={score} />;
       default:
         return <div>Loading...</div>;
     }
@@ -47,11 +43,11 @@ const HikeGameEngine = ({ patrol }) => {
         fontWeight: 'bold',
         color: '#3e2723',
         display: 'flex',
-        gap: '2rem'
+        gap: '2rem',
+        boxShadow: '0 2px 5px rgba(0,0,0,0.1)'
       }}>
-        <span>📌 المحطة: {station} / 3</span>
+        <span>📌 المحطة: {station > 3 ? 'النهاية' : `${station} / 3`}</span>
         <span>⚜️ الطليعة: {patrol.patrolName}</span>
-        <span>رائد: {patrol.raedName}</span>
       </div>
       
       {renderStation()}
