@@ -18,12 +18,21 @@ const SignInterpretation = ({ onCorrect, hints }) => {
     ]
   };
 
+  const [attempts, setAttempts] = useState(0);
+
   const handleCheck = (id) => {
     if (id === scenario.correct) {
       setFeedback('correct');
-      setTimeout(onCorrect, 1500);
+      setTimeout(() => onCorrect(true), 1500);
     } else {
-      setFeedback('wrong');
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
+      if (newAttempts >= 2) {
+        setFeedback('failed');
+        setTimeout(() => onCorrect(false), 2000);
+      } else {
+        setFeedback('wrong');
+      }
     }
   };
 
@@ -56,7 +65,8 @@ const SignInterpretation = ({ onCorrect, hints }) => {
       </div>
       
       {feedback === 'correct' && <p style={{ color: 'green', marginTop: '1rem', fontWeight: 'bold' }}>أحسنت! تفسير صحيح يا رائد.</p>}
-      {feedback === 'wrong' && <p style={{ color: 'red', marginTop: '1rem' }}>تفسير خاطئ! حاول مرة أخرى.</p>}
+      {feedback === 'wrong' && <p style={{ color: 'red', marginTop: '1rem' }}>تفسير خاطئ! باقي لك {2 - attempts} محاولة.</p>}
+      {feedback === 'failed' && <p style={{ color: 'darkred', marginTop: '1rem', fontWeight: 'bold' }}>خطأ! الإجابة الصحيحة كانت: الطريق الصحيح.</p>}
     </div>
   );
 };

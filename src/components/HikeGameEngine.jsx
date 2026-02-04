@@ -13,13 +13,13 @@ const HikeGameEngine = ({ patrol }) => {
   const [startTime] = useState(Date.now());
   const [endTime, setEndTime] = useState(null);
 
-  const nextStation = () => {
-    setScore(s => s + 10); // 10 points per stage
+  const nextStation = (success = true) => {
+    if (success) setScore(s => s + 10);
     setStation(s => s + 1);
   };
 
-  const finishGame = () => {
-    setScore(s => s + 10);
+  const finishGame = (success = true) => {
+    if (success) setScore(s => s + 10);
     setEndTime(Date.now());
     setStation(s => s + 1);
   };

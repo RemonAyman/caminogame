@@ -7,14 +7,22 @@ const ToolUsage = ({ onCorrect }) => {
   // Compass puzzle: Point North to proceed
   // Randomize target direction? Let's say we need to head East (90 deg).
 
+  const [attempts, setAttempts] = useState(0);
+
   const checkDirection = () => {
     // Check if rotation matches East (90) roughly
-    // Visual rotation logic
     if (rotation >= 80 && rotation <= 100) {
       setSolved(true);
-      setTimeout(onCorrect, 1500);
+      setTimeout(() => onCorrect(true), 1500);
     } else {
-      alert("البوصلة لا تشير إلى الاتجاه الصحيح!");
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
+      if (newAttempts >= 2) {
+        alert("انتهت المحاولات! الاتجاه الصحيح هو الشرق (90 درجة).");
+        onCorrect(false);
+      } else {
+        alert(`اتجاه خاطئ! باقي لك ${2 - newAttempts} محاولة.`);
+      }
     }
   };
 

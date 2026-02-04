@@ -17,12 +17,21 @@ const CipherChallenge = ({ onCorrect }) => {
     hint: "شفرة مورس: (-.-) هي الكاف، (---.) هي الشين..."
   };
 
+  const [attempts, setAttempts] = useState(0);
+
   const checkAnswer = () => {
     if (answer.trim() === puzzle.correctAnswer) {
       setFeedback('correct');
-      setTimeout(onCorrect, 1500);
+      setTimeout(() => onCorrect(true), 1500);
     } else {
-      setFeedback('wrong');
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
+      if (newAttempts >= 2) {
+        setFeedback('failed');
+        setTimeout(() => onCorrect(false), 2000);
+      } else {
+        setFeedback('wrong');
+      }
     }
   };
 
@@ -66,7 +75,8 @@ const CipherChallenge = ({ onCorrect }) => {
       <button className="btn-primary" onClick={checkAnswer}>فك الشفرة 🔓</button>
 
       {feedback === 'correct' && <p style={{ color: 'green', marginTop: '1rem', fontWeight: 'bold' }}>إجابة صحيحة! (كشاف)</p>}
-      {feedback === 'wrong' && <p style={{ color: 'red', marginTop: '1rem' }}>خطأ! حاول مرة أخرى.</p>}
+      {feedback === 'wrong' && <p style={{ color: 'red', marginTop: '1rem' }}>خطأ! باقي لك {2 - attempts} محاولة.</p>}
+      {feedback === 'failed' && <p style={{ color: 'darkred', marginTop: '1rem', fontWeight: 'bold' }}>للأسف انتهت المحاولات! الإجابة هي: كشاف</p>}
     </div>
   );
 };

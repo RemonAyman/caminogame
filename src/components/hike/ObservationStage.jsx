@@ -13,10 +13,21 @@ const ObservationStage = ({ onCorrect }) => {
     { id: 'church', component: <ChurchSign className="w-24 h-24 text-amber-700" /> },
   ];
 
+  const [attempts, setAttempts] = useState(0);
+
   const handleSelect = (id) => {
     setSelected(id);
     if (id === target.id) {
-      setTimeout(onCorrect, 1000);
+      setTimeout(() => onCorrect(true), 1000);
+    } else {
+      const newAttempts = attempts + 1;
+      setAttempts(newAttempts);
+      if (newAttempts >= 2) {
+        setTimeout(() => {
+           alert("انتهت المحاولات! المعلم الصحيح هو المسجد.");
+           onCorrect(false);
+        }, 500);
+      }
     }
   };
 
@@ -50,7 +61,7 @@ const ObservationStage = ({ onCorrect }) => {
       </div>
       
       {selected === target.id && <p style={{ color: 'green', fontWeight: 'bold' }}>رصد دقيق! ✅</p>}
-      {selected && selected !== target.id && <p style={{ color: 'red' }}>تركيز يا شباب! هذا ليس المطلوب.</p>}
+      {selected && selected !== target.id && <p style={{ color: 'red' }}>تركيز يا شباب! باقي {2 - attempts} محاولة.</p>}
     </div>
   );
 };
