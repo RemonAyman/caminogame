@@ -41,21 +41,6 @@ const PatrolPrep = ({ onReady }) => {
           />
         </div>
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>عدد أفراد الطليعة بالرحلة:</label>
-          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-            <input 
-              type="range" 
-              min="3" 
-              max="8" 
-              value={scoutCount}
-              onChange={(e) => setScoutCount(e.target.value)}
-              style={{ flex: 1 }}
-            />
-            <span style={{ fontWeight: 'bold', fontSize: '1.2rem', color: 'var(--secondary)' }}>{scoutCount}</span>
-          </div>
-        </div>
-
         <div className="hint-box">
           💡 <strong>نصيحة:</strong> تأكد من توزيع الأدوار (نظير أيمن، نظير أيسر، مسعف) ذهنياً قبل الانطلاق!
         </div>
