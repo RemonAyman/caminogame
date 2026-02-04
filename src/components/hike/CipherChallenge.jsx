@@ -8,14 +8,24 @@ const CipherChallenge = ({ data, onCorrect }) => {
   const [completed, setCompleted] = useState(false);
   const [success, setSuccess] = useState(false);
 
+  const normalizeArabic = (text) => {
+    return text
+      .trim()
+      .replace(/أ|إ|آ/g, 'ا')        // Normalize Alef
+      .replace(/ة/g, 'ه')            // Normalize Ta Marbuta to Ha
+      .replace(/ى/g, 'ي')            // Normalize Alef Maqsura to Ya
+      .replace(/^ال/, '');           // Remove 'Al' definite article prefix
+  };
+
   const checkAnswer = () => {
-    // Basic fuzzy matching for text answers
-    const cleanAnswer = answer.trim().toLowerCase().replace(/أ|إ|آ/g, 'ا').replace(/ة/g, 'ه');
-    const cleanCorrect = data.answer.toLowerCase().replace(/أ|إ|آ/g, 'ا').replace(/ة/g, 'ه');
+    const cleanAnswer = normalizeArabic(answer);
+    const cleanCorrect = normalizeArabic(data.answer);
     
     // Check if correct is in array of acceptable answers?
-    // For now simple match
-    if (cleanAnswer === cleanCorrect || (data.accepted && data.accepted.some(a => a.replace(/أ|إ|آ/g, 'ا').replace(/ة/g, 'ه') === cleanAnswer))) { 
+    const isMatch = cleanAnswer === cleanCorrect || 
+      (data.accepted && data.accepted.some(a => normalizeArabic(a) === cleanAnswer));
+
+    if (isMatch) { 
       setFeedback('correct');
       setSuccess(true);
       setCompleted(true);

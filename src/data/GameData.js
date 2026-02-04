@@ -1,133 +1,256 @@
+export const MORSE_ARABIC = {
+  'ا': '.-', 
+  'ب': '-...', 
+  'ت': '-', 
+  'ث': '-.-.', 
+  'ج': '.---', 
+  'ح': '....', 
+  'خ': '---', 
+  'د': '-..', 
+  'ذ': '--..', 
+  'ر': '.-.', 
+  'ز': '--.', 
+  'س': '...', 
+  'ش': '----', 
+  'ص': '-..-', 
+  'ض': '...-', 
+  'ط': '..-', 
+  'ظ': '-.--', 
+  'ع': '.-.-', 
+  'غ': '--.', 
+  'ف': '..-.', 
+  'ق': '--.-', 
+  'ك': '-.-', 
+  'ل': '.-..', 
+  'م': '--', 
+  'ن': '-.', 
+  'ه': '..-..',
+  'و': '.--',
+  'ي': '..',
+  'ى': '..',
+  'ء': '.',
+  'ئ': '.',
+  'ؤ': '.',
+  'ة': '..-..' 
+};
+
 export const QUESTION_BANK = [
-  // --- EASY (Sign Recognition) ---
+  // --- SIGNS (Reflecting provided Images) ---
   {
     id: 's1', type: 'sign', difficulty: 'easy', points: 1,
     question: "ماذا تعني هذه العلامة؟",
-    signId: 'mosque',
-    answer: "مسجد",
-    hint1: "مكان للعبادة.",
-    hint2: "يتميز بقبة وهلال.",
-    explanation: "هذه العلامة تدل على وجود مسجد."
+    signId: 'river',
+    answer: "نهر",
+    hint1: "مجرى مائي.",
+    hint2: "يتفرع.",
+    explanation: "خط متعرج يتفرع منه خط آخر يعني: نهر.",
+    key: "نهر" 
   },
   {
     id: 's2', type: 'sign', difficulty: 'easy', points: 1,
-    question: "علامة طريق:",
-    signId: 'arrow',
-    answer: "هذا الطريق",
-    accepted: ["الطريق الذي يجب ان نسلكه", "اتبع هذا الطريق", "طريق صحيح", "يمين"],
-    hint1: "اتبع اتجاه السهم.",
-    hint2: "الطريق الصحيح.",
-    explanation: "سهم برأس عادي وجذع مخطط يعني: الطريق الذي يجب أن نسلكه."
+    question: "ما معنى هذا الرمز؟",
+    signId: 'valley',
+    answer: "وادي",
+    hint1: "منخفض أرضي.",
+    hint2: "خط منقط.",
+    explanation: "الخطوط المنقطة المتفرعة تعني: وادي.",
+    key: "وادي"
   },
   {
     id: 's3', type: 'sign', difficulty: 'easy', points: 1,
-    question: "تحذير!",
-    signId: 'danger',
-    answer: "خطر",
-    accepted: ["تحذير", "احذر"],
-    hint1: "شكل مثلث.",
-    hint2: "انتبه!",
-    explanation: "المثلت يعني وجود خطر."
+    question: "علامة طريق:",
+    signId: 'stones',
+    answer: "احجار",
+    accepted: ["أحجار", "علامة أحجار"],
+    hint1: "أشياء صلبة.",
+    hint2: "مرتبة بشكل معين.",
+    explanation: "ترتيب الأحجار بهذا الشكل (مجموعة صغيرة وكبيرة) هو علامة طريق.",
+    key: "احجار"
   },
   {
     id: 's4', type: 'sign', difficulty: 'easy', points: 1,
-    question: "علامة نهاية:",
-    signId: 'gone_home',
-    answer: "خرجنا",
-    accepted: ["خرجنا من المعسكر بسلام", "ذهاب", "نهاية", "خرجت"],
-    hint1: "دائرة ونقطة.",
-    hint2: "تعني المغادرة بسلام.",
-    explanation: "دائرة وبداخلها نقطة تعني: خرجنا من المعسكر بسلام."
+    question: "ماذا أفعل هنا؟",
+    signId: 'cross_road',
+    answer: "اعبر الطريق",
+    accepted: ["أعبر الطريق", "عبور"],
+    hint1: "سهم يقطعه خط.",
+    hint2: "انتقل للجهة الأخرى.",
+    explanation: "سهم يقطعه خطان يعني: أعبر الطريق.",
+    key: "اعبر الطريق"
   },
-  
-  // --- MEDIUM (Interpretation) ---
   {
     id: 's5', type: 'sign', difficulty: 'medium', points: 2,
-    question: "ما معنى هذه العلامة؟",
-    signId: 'message_3',
-    answer: "رسالة",
-    accepted: ["توجد رسالة", "رسالة بعد 3 خطوات", "ابحث عن رسالة"],
-    hint1: "مستطيل وسهم.",
-    hint2: "الرقم 3 يدل على المسافة.",
-    explanation: "تعني: توجد رسالة مخبأة بعد 3 خطوات (أو أمتار) في اتجاه السهم."
+    question: "علامة بداية:",
+    signId: 'start',
+    answer: "نقطة البداية",
+    hint1: "دائرة وسهم.",
+    hint2: "من هنا نبدأ.",
+    explanation: "دائرة بها نقطة وسهم تعني: نقطة البداية.",
+    key: "نقطة البداية"
   },
   {
     id: 's6', type: 'sign', difficulty: 'medium', points: 2,
-    question: "مكان هام:",
-    signId: 'church',
-    answer: "كنيسة",
-    hint1: "مكان عبادة.",
-    hint2: "يتميز بصليب.",
-    explanation: "هذه العلامة تدل على وجود كنيسة."
+    question: "مكان عام:",
+    signId: 'airport',
+    answer: "مطار مدني",
+    accepted: ["مطار"],
+    hint1: "طائرات.",
+    hint2: "دائرة وتقاطع.",
+    explanation: "الدائرة التي يخرج منها خطوط متقاطعة تعني: مطار مدني.",
+    key: "مطار مدني"
   },
   {
-    id: 's7', type: 'sign', difficulty: 'medium', points: 2,
-    question: "علامة جغرافية:",
-    signId: 'river',
-    answer: "نهر",
-    accepted: ["مجرى مائي", "مياه"],
-    hint1: "ماء جاري.",
-    hint2: "يتفرع.",
-    explanation: "خطوط متعرجة تتفرع تعني وجود نهر."
+    id: 's7', type: 'sign', difficulty: 'hard', points: 3,
+    question: "تعليمات:",
+    signId: 'split_groups',
+    answer: "انقسموا الى مجموعتين",
+    hint1: "تفرقوا.",
+    hint2: "سهم يتفرع.",
+    explanation: "السهم الذي ينقسم لاتجاهين يعني: انقسموا إلى مجموعتين.",
+    key: "انقسموا"
+  },
+   {
+    id: 's8', type: 'sign', difficulty: 'hard', points: 3,
+    question: "تعليمات محددة:",
+    signId: 'split_groups_ratio',
+    answer: "انقسموا الى مجموعتين بنسبة 1:2",
+    accepted: ["1:2", "بنسبة 1:2"],
+    hint1: "تفرقوا بنسبة.",
+    hint2: "خطوط تقطع الفرع.",
+    explanation: "العلامة تعني: انقسموا إلى مجموعتين بنسبة 1 : 2.",
+    key: "1:2"
   },
   {
-    id: 's8', type: 'sign', difficulty: 'medium', points: 2,
-    question: "احذر من:",
-    signId: 'electric',
-    answer: "كهرباء",
-    accepted: ["خطر كهرباء", "ضغط عالي"],
-    hint1: "شكل صاعقة.",
-    hint2: "طاقة خطرة.",
-    explanation: "السهم المتعرج يعني خطر الكهرباء."
-  },
-
-  // --- HARD (Complex Signs) ---
-  {
-    id: 's9', type: 'sign', difficulty: 'hard', points: 3,
-    question: "ماذا تعني هذه العلامة؟",
-    signId: 'not_this_way',
-    answer: "خطأ",
-    accepted: ["لا تسلك هذا الطريق", "طريق خطأ", "ممنوع المرور", "غلط"],
-    hint1: "علامة المنع.",
-    hint2: "عكس السهم.",
-    explanation: "تعني: لا تسلك هذا الطريق (أو الطريق مغلق/خطأ)."
+    id: 's9', type: 'sign', difficulty: 'easy', points: 1,
+    question: "تحذير:",
+    signId: 'danger',
+    answer: "خطر",
+    hint1: "شكل هندسي ثلاثي.",
+    hint2: "انتبه.",
+    explanation: "المثلث يعني: خطر.",
+    key: "خطر"
   },
   {
-    id: 's10', type: 'sign', difficulty: 'hard', points: 3,
-    question: "معلم في الطريق:",
-    signId: 'windmill',
-    answer: "طاحونة",
-    accepted: ["طاحونة هواء"],
-    hint1: "تستخدم الهواء.",
-    hint2: "لطحن الحبوب.",
-    explanation: "الشكل يرمز لطاحونة هواء."
+    id: 's10', type: 'sign', difficulty: 'medium', points: 2,
+    question: "رسالة مخفية:",
+    signId: 'message_3m',
+    answer: "توجد رسالة على بعد 3 متر",
+    accepted: ["رسالة بعد 3 متر", "3 متر", "ثلاثة متر"],
+    hint1: "مستطيل ورقم.",
+    hint2: "وحدة قياس صغيرة.",
+    explanation: "مستطيل به رقم 3 وسهم يعني: توجد رسالة على بعد 3 متر.",
+    key: "3 متر"
   },
   {
-    id: 's11', type: 'sign', difficulty: 'hard', points: 3,
-    question: "هيكل:",
-    signId: 'bridge',
-    answer: "كوبري",
-    accepted: ["جسر"],
-    hint1: "نعبر عليه.",
-    hint2: "فوق الماء أو الطريق.",
-    explanation: "الخطان المتوازيان مع منحنى يعني كوبري (جسر)."
+    id: 's11', type: 'sign', difficulty: 'medium', points: 2,
+    question: "مسافة طويلة:",
+    signId: 'message_3km',
+    answer: "توجد رسالة على بعد 3 كيلو متر",
+    accepted: ["رسالة بعد 3 كيلو", "3 كم", "3 كيلو"],
+    hint1: "زاوية ورقم.",
+    hint2: "مسافة بعيدة.",
+    explanation: "زاوية بها رقم 3 وسهم تعني: توجد رسالة على بعد 3 كيلو متر.",
+    key: "3 كم"
   },
   {
     id: 's12', type: 'sign', difficulty: 'hard', points: 3,
-    question: "علامة التجمع:",
-    signId: 'stones',
-    answer: "احجار",
-    accepted: ["رجم", "أحجار", "علامة احجار", "كومة احجار"],
-    hint1: "أشياء صلبة مكدسة.",
-    hint2: "علامة طبيعية.",
-    explanation: "ترتيب الأحجار بهذا الشكل يستخدم كعلامة طريق."
+    question: "من سنقابل؟",
+    signId: 'friends',
+    answer: "الذين سوف تقابلهم اصدقاء",
+    accepted: ["اصدقاء", "أصدقاء لنا"],
+    hint1: "أسهم متقاربة.",
+    hint2: "ناس طيبين.",
+    explanation: "رؤوس الأسهم المتقابلة للداخل تعني: الذين سوف تقابلهم أصدقاء لنا.",
+    key: "أصدقاء"
+  },
+   {
+    id: 's13', type: 'sign', difficulty: 'hard', points: 3,
+    question: "تحذير كهربائي:",
+    signId: 'electric',
+    answer: "خطر كهرباء",
+    hint1: "صاعقة.",
+    hint2: "طاقة.",
+    explanation: "السهم المتعرج (صاعقة) يعني: خطر كهرباء.",
+    key: "كهرباء"
+  },
+  {
+    id: 's14', type: 'sign', difficulty: 'easy', points: 1,
+    question: "نهاية:",
+    signId: 'end',
+    answer: "نقطة النهاية",
+    hint1: "دائرة.",
+    hint2: "نقطة في المركز.",
+    explanation: "دائرة بداخلها نقطة تعني: نقطة النهاية.",
+    key: "نهاية"
+  },
+  {
+    id: 's15', type: 'sign', difficulty: 'medium', points: 2,
+    question: "طبيعة السكان:",
+    signId: 'uncooperative',
+    answer: "الاهالي في هذه المنطقة غير متعاونين",
+    accepted: ["غير متعاونين", "لا تخالط"],
+    hint1: "شكل رباعي مائل.",
+    hint2: "تحذير اجتماعي.",
+    explanation: "الشكل يعني: الأهالي في هذه المنطقة غير متعاونين (لا تخالط أهل هذا البلد).",
+    key: "غير متعاونين"
+  },
+  {
+    id: 's16', type: 'sign', difficulty: 'medium', points: 2,
+    question: "طبيعة المنطقة:",
+    signId: 'cooperative',
+    answer: "اهل المنطقة متعاونين",
+    accepted: ["متعاونين"],
+    hint1: "دوائر متداخلة.",
+    hint2: "اتحاد وترابط.",
+    explanation: "الثلاث دوائر المتداخلة تعني: أهل المنطقة متعاونين.",
+    key: "متعاونين"
+  },
+  // --- CIPHER QUESTIONS (ARABIC MORSE) ---
+  {
+    id: 'c1', type: 'cipher', difficulty: 'easy', points: 1,
+    question: "فك شفرة مورس التالية:",
+    code: "-.-",
+    answer: "ك",
+    hint1: "حرف واحد.",
+    hint2: "بسيط.",
+    explanation: "الكود (-.-) يقابل حرف الكاف (ك).",
+    key: "ك"
+  },
+  {
+    id: 'c2', type: 'cipher', difficulty: 'easy', points: 1,
+    question: "فك الشفرة:",
+    code: "----",
+    answer: "ش",
+    hint1: "اربع شرطات.",
+    hint2: "شين.",
+    explanation: "الكود (----) يقابل حرف الشين (ش).",
+    key: "ش"
+  },
+  {
+    id: 'c3', type: 'cipher', difficulty: 'medium', points: 2,
+    question: "كلمة كشفية:",
+    code: "-.- ... .... .----.", // "كشفية"
+    answer: "كشفية",
+    hint1: "صفة لنا.",
+    hint2: "تبدأ بكاف.",
+    explanation: "الرموز تترجم إلى: ك - ش - ف - ي - ة.",
+    key: "كشفية"
+  },
+  {
+    id: 'c4', type: 'cipher', difficulty: 'hard', points: 3,
+    question: "نداء:",
+    code: ".- ... - .-.- -..", // "استعد"
+    answer: "استعد",
+    accepted: ["أستعد", "استعداد"],
+    hint1: "فعل أمر.",
+    hint2: "تجهيز.",
+    explanation: "الرموز تعني: ا - س - ت - ع - د.",
+    key: "استعد"
   }
 ];
 
-// Re-export as functions expected by Engine
-// We only need one main export now since all are uniform
 export const generateGameLevels = () => {
-  // Shuffle all and pick 10
+  // Shuffle questions
   const shuffled = QUESTION_BANK.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, 10).map((q, i) => ({ ...q, index: i + 1 }));
 };

@@ -1,51 +1,51 @@
 import React, { useState } from 'react';
 
+const PATROLS = [
+  "سكة السلامة",
+  "GPS",
+  "مويت",
+  "Camino"
+];
+
 const PatrolPrep = ({ onReady }) => {
   const [patrolName, setPatrolName] = useState('');
-  const [scoutCount, setScoutCount] = useState(5);
-  const [raedName, setRaedName] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (patrolName && raedName) {
-      onReady({ patrolName, scoutCount, raedName });
+    if (patrolName) {
+      onReady({ patrolName, scoutCount: 5, raedName: 'القائد' });
     } else {
-      alert("الرجال تأكد من تعبئة اسم الطليعة واسم الرائد!");
+      alert("الرجال اختر اسم الطليعة!");
     }
   };
 
   return (
-    <div className="glass-card" style={{ maxWidth: '500px', width: '100%' }}>
-      <h2 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>تجهيز الطليعة</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', textAlign: 'right' }}>
+    <div className="glass-card" style={{ maxWidth: '500px', width: '100%', textAlign: 'center' }}>
+      <h2 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>اختر طليعتك</h2>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>اسم الطليعة:</label>
-          <input 
-            type="text" 
-            value={patrolName}
-            onChange={(e) => setPatrolName(e.target.value)}
-            placeholder="مثال: طليعة النسور"
-            style={{ width: '100%', padding: '0.8rem', borderRadius: '5px', border: '1px solid #ccc' }}
-          />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          {PATROLS.map((name) => (
+            <div 
+              key={name}
+              onClick={() => setPatrolName(name)}
+              style={{
+                padding: '1.5rem',
+                border: patrolName === name ? '3px solid var(--accent)' : '2px solid #ccc',
+                borderRadius: '10px',
+                cursor: 'pointer',
+                background: patrolName === name ? 'rgba(230, 126, 34, 0.1)' : 'white',
+                fontWeight: 'bold',
+                fontSize: '1.1rem',
+                transition: 'all 0.2s'
+              }}
+            >
+              {name}
+            </div>
+          ))}
         </div>
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 'bold' }}>اسم الرائد (أنت):</label>
-          <input 
-            type="text" 
-            value={raedName}
-            onChange={(e) => setRaedName(e.target.value)}
-            placeholder="اكتب اسمك يا بطل"
-            style={{ width: '100%', padding: '0.8rem', borderRadius: '5px', border: '1px solid #ccc' }}
-          />
-        </div>
-
-        <div className="hint-box">
-          💡 <strong>نصيحة:</strong> تأكد من توزيع الأدوار (نظير أيمن، نظير أيسر، مسعف) ذهنياً قبل الانطلاق!
-        </div>
-
-        <button type="submit" className="btn-primary" style={{ marginTop: '1rem' }}>
+        <button type="submit" className="btn-primary" style={{ marginTop: '2rem' }} disabled={!patrolName}>
           انطلاق نحو المجهول! 🏕️
         </button>
       </form>

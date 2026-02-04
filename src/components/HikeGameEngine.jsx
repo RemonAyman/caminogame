@@ -11,9 +11,24 @@ const HikeGameEngine = ({ patrol }) => {
   const [startTime] = useState(Date.now());
   const [gameFinished, setGameFinished] = useState(false);
   const [endTime, setEndTime] = useState(null);
+  
+  // Hint System State
+  const [hintRevealed, setHintRevealed] = useState(false);
+  const [penaltyMessage, setPenaltyMessage] = useState(null);
 
   const openPdf = () => {
     window.open('https://drive.google.com/file/d/1zyHEGE7yxplEAz8yNbrE8qhEG76Ui8o-/view?usp=sharing', '_blank');
+  };
+
+  const useHelpBook = () => {
+    if (hintRevealed) return;
+    
+    if (window.confirm("هل تريد استخدام كتاب المساعدة؟ سيتم خصم 5 نقاط من رصيدك!")) {
+      setScore(s => s - 5);
+      setHintRevealed(true);
+      setPenaltyMessage("تم خصم 5 نقاط لاستخدام المساعدة ⚠️");
+      setTimeout(() => setPenaltyMessage(null), 3000);
+    }
   };
 
   useEffect(() => {
@@ -28,6 +43,9 @@ const HikeGameEngine = ({ patrol }) => {
       setScore(s => s + currentPoints);
     }
     
+    // Reset hint state for next level
+    setHintRevealed(false);
+
     if (currentLevelIndex < levels.length - 1) {
       setCurrentLevelIndex(prev => prev + 1);
     } else {
@@ -60,32 +78,69 @@ const HikeGameEngine = ({ patrol }) => {
             display: 'flex',
             gap: '1rem',
             boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-            direction: 'rtl'
+            direction: 'rtl',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
           }}>
             <span>📌 مرحلة: {currentLevel.index} / {levels.length}</span>
             <span>⭐ الصعوبة: {currentLevel.difficulty === 'easy' ? 'سهل' : currentLevel.difficulty === 'medium' ? 'وسط' : 'صعب'}</span>
-            <span>⚜️ نقاطي: {score}</span>
-            <button 
-              onClick={openPdf}
-              style={{
-                background: '#e67e22',
-                color: 'white',
-                border: 'none',
-                borderRadius: '50%',
-                width: '30px',
-                height: '30px',
-                cursor: 'pointer',
-                fontWeight: 'bold',
-                title: 'مساعدة (الكتاب)'
-              }}
-            >
-              ?
-            </button>
+            <span style={{ color: score < 0 ? 'red' : 'inherit' }}>⚜️ نقاطي: {score}</span>
+            
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <button 
+                onClick={openPdf}
+                style={{
+                  background: '#e67e22',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '50%',
+                  width: '30px',
+                  height: '30px',
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  title: 'فتح ملف PDF للمراجعة'
+                }}
+              >
+                ?
+              </button>
+
+              <button 
+                onClick={useHelpBook}
+                disabled={hintRevealed}
+                style={{
+                  background: hintRevealed ? '#ccc' : '#d35400',
+                  color: 'white',
+                  border: 'none',
+                  padding: '5px 10px',
+                  borderRadius: '15px',
+                  cursor: hintRevealed ? 'default' : 'pointer',
+                  fontWeight: 'bold',
+                  fontSize: '0.8rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px'
+                }}
+                title="استخدام المساعدة (-5 نقاط)"
+              >
+                📖 {hintRevealed ? "تم الكشف" : "مساعدة (-5)"}
+              </button>
+            </div>
           </div>
 
-          {/* Currently we only have Cipher logic fully dynamic. 
-              In full version we would switch(currentLevel.type) to render Sign/Tool components.
-              For now, all generic questions map to CipherChallenge for text/code input. */}
+          {penaltyMessage && (
+            <div style={{ 
+              background: '#ffdddd', color: 'red', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem', animation: 'fadeIn 0.5s' 
+            }}>
+              {penaltyMessage}
+            </div>
+          )}
+
+          {hintRevealed && (
+            <div className="hint-box" style={{ background: '#e3f2fd', borderRight: '4px solid #2196f3', marginBottom: '1rem' }}>
+              ℹ️ <strong>مساعدة:</strong> مفتاح الإجابة هو: <span style={{ fontWeight: 'bold', color: '#d35400' }}>{currentLevel.key || currentLevel.answer}</span>
+            </div>
+          )}
           
           <CipherChallenge 
             key={currentLevel.id + currentLevel.index} // Force re-render on new question
