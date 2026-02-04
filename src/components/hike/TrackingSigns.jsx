@@ -72,9 +72,10 @@ export const CampDirectionSign = ({ className }) => (
 );
 
 // 8. Split Groups 1:2 (انقسموا الى مجموعتين بنسبة 1:2)
+// 8. Split Groups 1:2 (انقسموا الى مجموعتين بنسبة 1:2)
 export const SplitGroupsRatioSign = ({ className }) => (
   <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-    {/* Main path splitting */}
+    {/* Fork shape: Line splits into two */}
     <path d="M10 30 L50 30" />
     <path d="M50 30 L90 10" markerEnd="url(#arrow)" />
     <path d="M50 30 L90 50" markerEnd="url(#arrow)" />
@@ -87,10 +88,11 @@ export const SplitGroupsRatioSign = ({ className }) => (
 
 // 9. Split Groups (انقسموا الى مجموعتين) - Fork with arrows
 export const SplitGroupsSign = ({ className }) => (
-  <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-     <path d="M10 30 L50 30" />
-     <path d="M50 30 L90 10" markerEnd="url(#arrow)" />
-     <path d="M50 30 L90 50" markerEnd="url(#arrow)" />
+  <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="4">
+     {/* Distinct Fork with Arrowheads */}
+     <path d="M10 30 L50 30" /> {/* Stem */}
+     <path d="M50 30 L85 10" markerEnd="url(#arrow)" /> {/* Top Branch */}
+     <path d="M50 30 L85 50" markerEnd="url(#arrow)" /> {/* Bottom Branch */}
   </svg>
 );
 
