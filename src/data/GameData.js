@@ -1,201 +1,133 @@
-export const CIPHER_QUESTIONS = [
-  // --- EASY (1 Point) ---
+export const QUESTION_BANK = [
+  // --- EASY (Sign Recognition) ---
   {
-    id: 'c1',
-    type: 'cipher',
-    difficulty: 'easy',
-    points: 1,
-    question: "فك شفرة مورس التالية:",
-    code: ".-. ... --",
-    answer: "رسم",
-    hint1: "تتكون من 3 حروف.",
-    hint2: ".-. = ر",
-    explanation: "الحروف هي: ر (.-.)، س (...)، م (--)."
+    id: 's1', type: 'sign', difficulty: 'easy', points: 1,
+    question: "ماذا تعني هذه العلامة؟",
+    signId: 'mosque',
+    answer: "مسجد",
+    hint1: "مكان للعبادة.",
+    hint2: "يتميز بقبة وهلال.",
+    explanation: "هذه العلامة تدل على وجود مسجد."
   },
   {
-    id: 'c2',
-    type: 'cipher',
-    difficulty: 'easy',
-    points: 1,
-    question: "فك الشفرة (أ=1, ب=2):",
-    code: "1 - 2",
-    answer: "أب",
-    hint1: "أرقام تدل على ترتيب الحروف.",
-    hint2: "الكلمة تعني الوالد.",
-    explanation: "1=أ، 2=ب. الكلمة هي (أب)."
+    id: 's2', type: 'sign', difficulty: 'easy', points: 1,
+    question: "علامة طريق:",
+    signId: 'arrow',
+    answer: "هذا الطريق",
+    accepted: ["الطريق الذي يجب ان نسلكه", "اتبع هذا الطريق", "طريق صحيح", "يمين"],
+    hint1: "اتبع اتجاه السهم.",
+    hint2: "الطريق الصحيح.",
+    explanation: "سهم برأس عادي وجذع مخطط يعني: الطريق الذي يجب أن نسلكه."
   },
   {
-    id: 'c3',
-    type: 'cipher',
-    difficulty: 'easy',
-    points: 1,
-    question: "اقرأ الكلمة (معكوسة):",
-    code: "ة د ا ي ق",
-    answer: "قيادة",
-    hint1: "ابدأ القراءة من اليسار.",
-    hint2: "صفة يجب أن يتحلى بها الرائد.",
-    explanation: "عند عكس الحروف تظهر كلمة (قيادة)."
-  },
-  // --- MEDIUM (2 Points) ---
-  {
-    id: 'c4',
-    type: 'cipher',
-    difficulty: 'medium',
-    points: 2,
-    question: "فك شفرة مورس:",
-    code: ".-- .- -.-. -..",
-    answer: "وعد",
-    hint1: "أول كلمة نحفظها في الكشافة.",
-    hint2: "تبدأ بحرف الواو (.--).",
-    explanation: "تشير إلى (الوعد) الكشفي."
+    id: 's3', type: 'sign', difficulty: 'easy', points: 1,
+    question: "تحذير!",
+    signId: 'danger',
+    answer: "خطر",
+    accepted: ["تحذير", "احذر"],
+    hint1: "شكل مثلث.",
+    hint2: "انتبه!",
+    explanation: "المثلت يعني وجود خطر."
   },
   {
-    id: 'c5',
-    type: 'cipher',
-    difficulty: 'medium',
-    points: 2,
-    question: "شفرة الأرقام (أبجد هوز):",
-    code: "1 - 4 - 2",
-    answer: "أدب",
-    hint1: "حساب الجمل (أ=1، ب=2، ج=3، د=4).",
-    hint2: "صفة حميدة.",
-    explanation: "1(أ) - 4(د) - 2(ب) = أدب."
+    id: 's4', type: 'sign', difficulty: 'easy', points: 1,
+    question: "علامة نهاية:",
+    signId: 'gone_home',
+    answer: "خرجنا",
+    accepted: ["خرجنا من المعسكر بسلام", "ذهاب", "نهاية", "خرجت"],
+    hint1: "دائرة ونقطة.",
+    hint2: "تعني المغادرة بسلام.",
+    explanation: "دائرة وبداخلها نقطة تعني: خرجنا من المعسكر بسلام."
+  },
+  
+  // --- MEDIUM (Interpretation) ---
+  {
+    id: 's5', type: 'sign', difficulty: 'medium', points: 2,
+    question: "ما معنى هذه العلامة؟",
+    signId: 'message_3',
+    answer: "رسالة",
+    accepted: ["توجد رسالة", "رسالة بعد 3 خطوات", "ابحث عن رسالة"],
+    hint1: "مستطيل وسهم.",
+    hint2: "الرقم 3 يدل على المسافة.",
+    explanation: "تعني: توجد رسالة مخبأة بعد 3 خطوات (أو أمتار) في اتجاه السهم."
   },
   {
-    id: 'c5_b',
-    type: 'cipher',
-    difficulty: 'medium',
-    points: 2,
-    question: "شفرة عكس الكلمات:",
-    code: "ل م ع",
-    answer: "عمل",
-    hint1: "اقرأ بالمقلوب.",
-    hint2: "ضد الكسل.",
-    explanation: "عكس (ل م ع) هو (عمل)."
+    id: 's6', type: 'sign', difficulty: 'medium', points: 2,
+    question: "مكان هام:",
+    signId: 'church',
+    answer: "كنيسة",
+    hint1: "مكان عبادة.",
+    hint2: "يتميز بصليب.",
+    explanation: "هذه العلامة تدل على وجود كنيسة."
   },
   {
-    id: 'c5_c',
-    type: 'cipher',
-    difficulty: 'medium',
-    points: 2,
-    question: "شفرة الترتيب (أ=1, ي=10):",
-    code: "27 - 1 - 4 - 10",
-    answer: "وادي",
-    hint1: "مكان نمشي فيه في الرحلة الخلوية.",
-    hint2: "يبدأ بحرف الواو (رقم 27).",
-    explanation: "و(27) ا(1) د(8) ي(28) - تقريباً حسب الترتيب الأبجدي، الكلمة هي وادي."
-  },
-  // --- HARD (3 Points) ---
-  {
-    id: 'c6',
-    type: 'cipher',
-    difficulty: 'hard',
-    points: 3,
-    question: "شفرة المرايا (رتب الحروف):",
-    code: "ب ي ر د ت",
-    answer: "تدريب",
-    hint1: "اقرأ من اليسار لليمين.",
-    hint2: "شيء نفعله لنتعلم المهارات.",
-    explanation: "الكلمة المعكوسة هي (تدريب)."
+    id: 's7', type: 'sign', difficulty: 'medium', points: 2,
+    question: "علامة جغرافية:",
+    signId: 'river',
+    answer: "نهر",
+    accepted: ["مجرى مائي", "مياه"],
+    hint1: "ماء جاري.",
+    hint2: "يتفرع.",
+    explanation: "خطوط متعرجة تتفرع تعني وجود نهر."
   },
   {
-    id: 'c7',
-    type: 'cipher',
-    difficulty: 'hard',
-    points: 3,
-    question: "شفرة الأرقام الكبرى (جمل):",
-    code: "9 - 200 - 10 - 100",
-    answer: "طريق",
-    hint1: "نمشي عليه.",
-    hint2: "ط=9، ق=100.",
-    explanation: "بحساب الجمل: ط(9)+ر(200)+ي(10)+ق(100) = طريق."
+    id: 's8', type: 'sign', difficulty: 'medium', points: 2,
+    question: "احذر من:",
+    signId: 'electric',
+    answer: "كهرباء",
+    accepted: ["خطر كهرباء", "ضغط عالي"],
+    hint1: "شكل صاعقة.",
+    hint2: "طاقة خطرة.",
+    explanation: "السهم المتعرج يعني خطر الكهرباء."
+  },
+
+  // --- HARD (Complex Signs) ---
+  {
+    id: 's9', type: 'sign', difficulty: 'hard', points: 3,
+    question: "ماذا تعني هذه العلامة؟",
+    signId: 'not_this_way',
+    answer: "خطأ",
+    accepted: ["لا تسلك هذا الطريق", "طريق خطأ", "ممنوع المرور", "غلط"],
+    hint1: "علامة المنع.",
+    hint2: "عكس السهم.",
+    explanation: "تعني: لا تسلك هذا الطريق (أو الطريق مغلق/خطأ)."
   },
   {
-    id: 'c8',
-    type: 'cipher',
-    difficulty: 'hard',
-    points: 3,
-    question: "شفرة مورس:",
-    code: "... .- -.-. -..",
-    answer: "ساعد",
-    hint1: "فعل أمر للكشف.",
-    hint2: "سـ... عـ...",
-    explanation: "تترجم الشفرة إلى كلمة (ساعد)."
+    id: 's10', type: 'sign', difficulty: 'hard', points: 3,
+    question: "معلم في الطريق:",
+    signId: 'windmill',
+    answer: "طاحونة",
+    accepted: ["طاحونة هواء"],
+    hint1: "تستخدم الهواء.",
+    hint2: "لطحن الحبوب.",
+    explanation: "الشكل يرمز لطاحونة هواء."
   },
   {
-    id: 'c9',
-    type: 'cipher',
-    difficulty: 'hard',
-    points: 3,
-    question: "شفرة الإزاحة (+1):",
-    code: "ح - ت - م",
-    answer: "جبل",
-    hint1: "ارجع حرفاً واحداً للوراء.",
-    hint2: "شيء مرتفع.",
-    explanation: "عند إرجاع كل حرف خطوة للوراء في الترتيب الأبجدي: ح->ج، ت->ب، م->ل."
+    id: 's11', type: 'sign', difficulty: 'hard', points: 3,
+    question: "هيكل:",
+    signId: 'bridge',
+    answer: "كوبري",
+    accepted: ["جسر"],
+    hint1: "نعبر عليه.",
+    hint2: "فوق الماء أو الطريق.",
+    explanation: "الخطان المتوازيان مع منحنى يعني كوبري (جسر)."
   },
   {
-    id: 'c10',
-    type: 'cipher',
-    difficulty: 'hard',
-    points: 3,
-    question: "لغز: ما هو الشيء؟",
-    code: "أخضر في الأرض، أسود في السوق، أحمر في البيت؟",
-    answer: "الشاي",
-    hint1: "مشروب مشهور.",
-    hint2: "نغليه على النار.",
-    explanation: "الشاي (ورقه أخضر، يباع مجفف أسود، ويصبح أحمر عند الغلي)."
-  },
-  // --- ADDITIONAL EASY TO FILL POOL ---
-  {
-    id: 'e_extra1', difficulty: 'easy', points: 1, type: 'cipher',
-    question: "أكمل: الكشاف ...",
-    code: "ص . د .",
-    answer: "صادق",
-    hint1: "من قانون الكشافة.",
-    hint2: "الكلمة تنتهي بحرف القاف.",
-    explanation: "الكشاف صادق (البند الأول من القانون)."
-  },
-  {
-    id: 'e_extra2', difficulty: 'easy', points: 1, type: 'cipher',
-    question: "رمز الزهرة:",
-    code: "ز _ ب _ ة",
-    answer: "زنبقة",
-    hint1: "شعار الكشافة.",
-    hint2: "نوع من الزهور.",
-    explanation: "الزنبقة."
+    id: 's12', type: 'sign', difficulty: 'hard', points: 3,
+    question: "علامة التجمع:",
+    signId: 'stones',
+    answer: "احجار",
+    accepted: ["رجم", "أحجار", "علامة احجار", "كومة احجار"],
+    hint1: "أشياء صلبة مكدسة.",
+    hint2: "علامة طبيعية.",
+    explanation: "ترتيب الأحجار بهذا الشكل يستخدم كعلامة طريق."
   }
 ];
 
-export const SIGN_QUESTIONS = [];
-
-// Helper to get random items WITHOUT duplication from source
-// arr: Source array
-// n: Number of items needed
-const getRandom = (arr, n) => {
-  // If we don't have enough UNIQUE items, return all of them shuffled
-  if (arr.length <= n) {
-    return arr.sort(() => 0.5 - Math.random());
-  }
-  // Otherwise pick n unique random items
-  return arr.sort(() => 0.5 - Math.random()).slice(0, n);
-};
-
+// Re-export as functions expected by Engine
+// We only need one main export now since all are uniform
 export const generateGameLevels = () => {
-  // We need 10 levels: 3 Easy, 4 Medium, 3 Hard
-  
-  const easy = CIPHER_QUESTIONS.filter(q => q.difficulty === 'easy');
-  const medium = CIPHER_QUESTIONS.filter(q => q.difficulty === 'medium');
-  const hard = CIPHER_QUESTIONS.filter(q => q.difficulty === 'hard');
-
-  // Select randomly from the available Unique pools
-  // We DO NOT spread [...easy, ...easy] anymore to prevent duplicates.
-  const selectedEasy = getRandom(easy, 3);
-  const selectedMedium = getRandom(medium, 4);
-  const selectedHard = getRandom(hard, 3);
-
-  return [...selectedEasy, ...selectedMedium, ...selectedHard].map((level, index) => ({
-    ...level,
-    index: index + 1
-  }));
+  // Shuffle all and pick 10
+  const shuffled = QUESTION_BANK.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 10).map((q, i) => ({ ...q, index: i + 1 }));
 };

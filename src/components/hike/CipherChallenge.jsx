@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SignsMap } from './TrackingSigns';
 
 const CipherChallenge = ({ data, onCorrect }) => {
   const [answer, setAnswer] = useState('');
@@ -8,11 +9,16 @@ const CipherChallenge = ({ data, onCorrect }) => {
   const [success, setSuccess] = useState(false);
 
   const checkAnswer = () => {
-    if (answer.trim() === data.answer || answer.trim() === data.correctAnswer) { 
+    // Basic fuzzy matching for text answers
+    const cleanAnswer = answer.trim().toLowerCase().replace(/أ|إ|آ/g, 'ا').replace(/ة/g, 'ه');
+    const cleanCorrect = data.answer.toLowerCase().replace(/أ|إ|آ/g, 'ا').replace(/ة/g, 'ه');
+    
+    // Check if correct is in array of acceptable answers?
+    // For now simple match
+    if (cleanAnswer === cleanCorrect || (data.accepted && data.accepted.some(a => a.replace(/أ|إ|آ/g, 'ا').replace(/ة/g, 'ه') === cleanAnswer))) { 
       setFeedback('correct');
       setSuccess(true);
       setCompleted(true);
-      // Wait removed, show explanation immediately
     } else {
       const newAttempts = attempts + 1;
       setAttempts(newAttempts);
@@ -26,6 +32,8 @@ const CipherChallenge = ({ data, onCorrect }) => {
     }
   };
 
+  const SignComponent = data.signId ? SignsMap[data.signId] : null;
+
   return (
     <div className="glass-card" style={{ maxWidth: '600px', width: '100%' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
@@ -35,22 +43,29 @@ const CipherChallenge = ({ data, onCorrect }) => {
         <span style={{ fontSize: '0.9rem', color: '#7f8c8d' }}>{data.difficulty === 'easy' ? 'سهل' : data.difficulty === 'medium' ? 'متوسط' : 'صعب'}</span>
       </div>
 
-      <h3>تحدي الشفرات</h3>
+      <h3>{data.type === 'sign' ? 'ماذا تعني هذه العلامة؟' : 'تحدي الشفرات'}</h3>
       <p>{data.question}</p>
       
       {!completed && (
         <>
           <div style={{ 
-            background: '#3e2723', 
-            color: '#f1c40f', 
+            background: '#fff8dc', 
+            color: '#3e2723', 
             padding: '1.5rem', 
-            fontSize: '2rem', 
-            fontFamily: 'monospace',
             borderRadius: '10px',
             margin: '2rem 0',
-            letterSpacing: '5px'
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '150px'
           }}>
-            {data.code}
+            {data.type === 'sign' && SignComponent ? (
+              <SignComponent className="w-32 h-32 text-brown-800" style={{ width: '120px', height: '120px', stroke: '#5d4037' }} />
+            ) : (
+              <div style={{ fontSize: '2rem', fontFamily: 'monospace', letterSpacing: '5px' }}>
+                {data.code}
+              </div>
+            )}
           </div>
 
           <div className="hint-box">
@@ -66,7 +81,7 @@ const CipherChallenge = ({ data, onCorrect }) => {
             type="text" 
             value={answer}
             onChange={(e) => setAnswer(e.target.value)}
-            placeholder="اكتب فك الشفرة هنا.."
+            placeholder={data.type === 'sign' ? "اكتب اسم العلامة..." : "اكتب فك الشفرة هنا.."}
             style={{ 
               padding: '0.8rem', 
               fontSize: '1.2rem', 
@@ -79,7 +94,9 @@ const CipherChallenge = ({ data, onCorrect }) => {
           />
           
           <br/>
-          <button className="btn-primary" onClick={checkAnswer}>فك الشفرة 🔓</button>
+          <button className="btn-primary" onClick={checkAnswer}>
+            {data.type === 'sign' ? 'تحقق من العلامة' : 'فك الشفرة 🔓'}
+          </button>
         </>
       )}
 

@@ -12,6 +12,10 @@ const HikeGameEngine = ({ patrol }) => {
   const [gameFinished, setGameFinished] = useState(false);
   const [endTime, setEndTime] = useState(null);
 
+  const openPdf = () => {
+    window.open('https://drive.google.com/file/d/1zyHEGE7yxplEAz8yNbrE8qhEG76Ui8o-/view?usp=sharing', '_blank');
+  };
+
   useEffect(() => {
     // Generate 10 randomized levels on mount
     const newLevels = generateGameLevels();
@@ -61,6 +65,22 @@ const HikeGameEngine = ({ patrol }) => {
             <span>📌 مرحلة: {currentLevel.index} / {levels.length}</span>
             <span>⭐ الصعوبة: {currentLevel.difficulty === 'easy' ? 'سهل' : currentLevel.difficulty === 'medium' ? 'وسط' : 'صعب'}</span>
             <span>⚜️ نقاطي: {score}</span>
+            <button 
+              onClick={openPdf}
+              style={{
+                background: '#e67e22',
+                color: 'white',
+                border: 'none',
+                borderRadius: '50%',
+                width: '30px',
+                height: '30px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                title: 'مساعدة (الكتاب)'
+              }}
+            >
+              ?
+            </button>
           </div>
 
           {/* Currently we only have Cipher logic fully dynamic. 
