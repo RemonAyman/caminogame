@@ -2,20 +2,22 @@ import React from 'react';
 
 // SVGs based on "The Scout Hike" (الرحلة الخلوية) PDF images
 
-// 1. River (نهر) - Wavy line branching
+// 1. River (نهر) - Solid wavy lines
 export const RiverSign = ({ className }) => (
   <svg viewBox="0 0 100 50" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-    <path d="M10 25 Q30 15 50 25 T90 25" />
-    <path d="M50 25 Q70 10 90 5" /> {/* Branch */}
+    {/* Solid uneven lines */}
+    <path d="M10 25 C30 15, 50 35, 90 25" />
+    <path d="M50 28 C70 18, 80 15, 90 5" />
   </svg>
 );
 
-// 2. Valley (وادي) - Dotted branching line
+// 2. Valley (وادي) - Distinct Dotted lines
 export const ValleySign = ({ className }) => (
-  <svg viewBox="0 0 100 50" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-    <path d="M10 25 Q30 25 50 25" strokeDasharray="4,4" />
-    <path d="M50 25 L90 10" strokeDasharray="4,4" />
-    <path d="M50 25 L90 40" strokeDasharray="4,4" />
+  <svg viewBox="0 0 100 50" className={className} stroke="currentColor" fill="none" strokeWidth="4">
+    {/* Dotted paths */}
+    <path d="M10 25 Q30 25 50 25" strokeDasharray="1,5" strokeLinecap="round" />
+    <path d="M50 25 L90 10" strokeDasharray="1,5" strokeLinecap="round" />
+    <path d="M50 25 L90 40" strokeDasharray="1,5" strokeLinecap="round" />
   </svg>
 );
 
@@ -49,11 +51,6 @@ export const StartPointSign = ({ className }) => (
     <circle cx="20" cy="50" r="15" />
     <circle cx="20" cy="50" r="3" fill="currentColor" />
     <line x1="35" y1="50" x2="90" y2="50" markerEnd="url(#arrow)" />
-    <defs>
-      <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-        <path d="M0,0 L0,6 L9,3 z" fill="currentColor" />
-      </marker>
-    </defs>
   </svg>
 );
 
@@ -77,20 +74,23 @@ export const CampDirectionSign = ({ className }) => (
 // 8. Split Groups 1:2 (انقسموا الى مجموعتين بنسبة 1:2)
 export const SplitGroupsRatioSign = ({ className }) => (
   <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-    <line x1="10" y1="30" x2="80" y2="30" />
-    <path d="M80 30 L95 15" />
-    <path d="M80 30 L95 45" />
-    <line x1="85" y1="20" x2="85" y2="28" /> {/* Should be cross marks on one branch? Image shows lines crossing the branch */}
-    <line x1="88" y1="22" x2="88" y2="30" />
+    {/* Main path splitting */}
+    <path d="M10 30 L50 30" />
+    <path d="M50 30 L90 10" markerEnd="url(#arrow)" />
+    <path d="M50 30 L90 50" markerEnd="url(#arrow)" />
+    
+    {/* Ratio marks on lower branch */}
+    <line x1="65" y1="35" x2="75" y2="45" strokeWidth="2" />
+    <line x1="75" y1="40" x2="85" y2="50" strokeWidth="2" />
   </svg>
 );
 
-// 9. Split Groups (انقسموا الى مجموعتين) - Fork arrow
+// 9. Split Groups (انقسموا الى مجموعتين) - Fork with arrows
 export const SplitGroupsSign = ({ className }) => (
   <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-     <path d="M10 30 L60 30" />
-     <path d="M60 30 L90 10" markerEnd="url(#arrow)" />
-     <path d="M60 30 L90 50" markerEnd="url(#arrow)" />
+     <path d="M10 30 L50 30" />
+     <path d="M50 30 L90 10" markerEnd="url(#arrow)" />
+     <path d="M50 30 L90 50" markerEnd="url(#arrow)" />
   </svg>
 );
 

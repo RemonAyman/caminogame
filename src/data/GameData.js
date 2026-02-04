@@ -212,7 +212,7 @@ export const QUESTION_BANK = [
     code: "-.-",
     answer: "ك",
     hint1: "حرف واحد.",
-    hint2: "بسيط.",
+    hint2: "بداية كلمة كشافة.",
     explanation: "الكود (-.-) يقابل حرف الكاف (ك).",
     key: "ك"
   },
@@ -229,12 +229,13 @@ export const QUESTION_BANK = [
   {
     id: 'c3', type: 'cipher', difficulty: 'medium', points: 2,
     question: "كلمة كشفية:",
-    code: "-.- ... .... .----.", // "كشفية"
-    answer: "كشفية",
-    hint1: "صفة لنا.",
+    code: "-.- ---- .- ..-.", // "كشاف"
+    answer: "كشاف",
+    accepted: ["الكشاف"],
+    hint1: "شخص ينتمي للحركة.",
     hint2: "تبدأ بكاف.",
-    explanation: "الرموز تترجم إلى: ك - ش - ف - ي - ة.",
-    key: "كشفية"
+    explanation: "الرموز تترجم إلى: ك - ش - ا - ف (كشاف).",
+    key: "كشاف"
   },
   {
     id: 'c4', type: 'cipher', difficulty: 'hard', points: 3,
@@ -243,14 +244,71 @@ export const QUESTION_BANK = [
     answer: "استعد",
     accepted: ["أستعد", "استعداد"],
     hint1: "فعل أمر.",
-    hint2: "تجهيز.",
+    hint2: "شعار الكشاف.",
     explanation: "الرموز تعني: ا - س - ت - ع - د.",
     key: "استعد"
+  },
+  {
+    id: 'c5', type: 'cipher', difficulty: 'medium', points: 2,
+    question: "تحية:",
+    code: "... .-.. .- --", // "سلام"
+    answer: "سلام",
+    accepted: ["السلام", "تحية"],
+    hint1: "تحية الإسلام.",
+    hint2: "عكس الحرب.",
+    explanation: "الرموز (س - ل - ا - م) تعني: سلام.",
+    key: "سلام"
+  },
+  {
+    id: 'c6', type: 'cipher', difficulty: 'hard', points: 3,
+    question: "قيمة:",
+    code: ".-- ..- -.", // "وطن"
+    answer: "وطن",
+    accepted: ["الوطن", "بلادي"],
+    hint1: "الأرض التي نعيش عليها.",
+    hint2: "ثلاثة حروف.",
+    explanation: "الرموز (و - ط - ن) تعني: وطن.",
+    key: "وطن"
+  },
+  {
+    id: 'c7', type: 'cipher', difficulty: 'medium', points: 2,
+    question: "أساس النجاح:",
+    code: ".-.- -- .-..", // "عمل"
+    answer: "عمل",
+    accepted: ["العمل", "شغل"],
+    hint1: "الجهد والنشاط.",
+    hint2: "عين ميم لام.",
+    explanation: "الرموز (ع - م - ل) تعني: عمل.",
+    key: "عمل"
+  },
+  {
+    id: 'c8', type: 'cipher', difficulty: 'easy', points: 1,
+    question: "أساس الحياة:",
+    code: "-.. .. -.", // "دين"
+    answer: "دين",
+    accepted: ["الدين", "اسلام"],
+    hint1: "معتقد.",
+    hint2: "دال ياء نون.",
+    explanation: "الرموز (د - ي - ن) تعني: دين.",
+    key: "دين"
   }
 ];
 
 export const generateGameLevels = () => {
-  // Shuffle questions
-  const shuffled = QUESTION_BANK.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, 10).map((q, i) => ({ ...q, index: i + 1 }));
+  // Separate questions by type
+  const signQuestions = QUESTION_BANK.filter(q => q.type === 'sign');
+  const cipherQuestions = QUESTION_BANK.filter(q => q.type === 'cipher');
+  
+  // Shuffle both arrays
+  const shuffledSigns = signQuestions.sort(() => 0.5 - Math.random());
+  const shuffledCiphers = cipherQuestions.sort(() => 0.5 - Math.random());
+  
+  // Pick 5 signs and 5 ciphers (or as many as available)
+  const selectedSigns = shuffledSigns.slice(0, 5);
+  const selectedCiphers = shuffledCiphers.slice(0, 5);
+  
+  // Combine and shuffle final list
+  const gameLevels = [...selectedSigns, ...selectedCiphers].sort(() => 0.5 - Math.random());
+  
+  return gameLevels.map((q, i) => ({ ...q, index: i + 1 }));
 };

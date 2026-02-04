@@ -21,7 +21,7 @@ const PatrolPrep = ({ onReady }) => {
 
   return (
     <div className="glass-card" style={{ maxWidth: '500px', width: '100%', textAlign: 'center' }}>
-      <h2 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>اختر طليعتك</h2>
+      <h2 style={{ color: 'var(--primary)', marginBottom: '1.5rem' }}>اختار رهطك</h2>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
         
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
