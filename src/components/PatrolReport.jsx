@@ -10,11 +10,10 @@ const PatrolReport = ({ patrol, score, timeTaken }) => {
       <div style={{ marginTop: '2rem', fontSize: '1.1rem', lineHeight: '1.8' }}>
         <p><strong>اسم الطليعة:</strong> {patrol.patrolName}</p>
         <p><strong>قائد الرحلة (الرائد):</strong> {patrol.raedName}</p>
-        <p><strong>عدد الأفراد:</strong> {patrol.scoutCount}</p>
         <hr style={{ margin: '1rem 0', borderColor: 'rgba(139, 69, 19, 0.2)' }} />
         
         <p><strong>الحالة العامة:</strong> <span style={{ color: 'green' }}>ممتازة</span> (وصل الجميع بسلام)</p>
-        <p><strong>الألغاز المحلولة:</strong> {score} / 3</p>
+        <p><strong>النقاط المحققة:</strong> {score}</p>
         <p><strong>المدة الزمنية:</strong> {timeTaken || "قياسي"}</p>
         
         <div className="hint-box" style={{ background: '#d4edda', borderColor: '#c3e6cb', color: '#155724' }}>
