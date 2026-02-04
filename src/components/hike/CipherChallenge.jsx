@@ -93,15 +93,23 @@ const CipherChallenge = ({ data, onCorrect }) => {
            )}
 
            <div style={{ 
-             background: 'rgba(255,255,255,0.8)', 
+             background: 'rgba(255,255,255,0.95)', 
              padding: '1rem', 
              borderRadius: '8px', 
-             borderRight: '4px solid var(--primary)',
+             borderRight: '5px solid var(--primary)',
              textAlign: 'right',
-             marginBottom: '1.5rem'
+             marginBottom: '1.5rem',
+             color: '#2c3e50'
            }}>
-             <h4>📖 التفسير:</h4>
-             <p>{data.explanation || "الإجابة هي: " + data.answer}</p>
+             <h4 style={{ color: 'var(--primary)', borderBottom: '1px solid #ddd', paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
+               📖 التوضيح:
+             </h4>
+             <p style={{ fontWeight: 'bold', marginBottom: '0.5rem', color: '#27ae60' }}>
+               الإجابة الصحيحة: {data.answer}
+             </p>
+             <p style={{ lineHeight: '1.6' }}>
+               {data.explanation}
+             </p>
            </div>
 
            <button className="btn-primary" onClick={() => onCorrect(success)}>

@@ -6,11 +6,11 @@ export const CIPHER_QUESTIONS = [
     difficulty: 'easy',
     points: 1,
     question: "فك شفرة مورس التالية:",
-    code: "-.- ... ---.",
-    answer: "كش",
-    hint1: "-.- = ك",
-    hint2: "---. = ش",
-    explanation: "الحرف K يقابله (-.-) والحرف SH يقابله (---.) في شفرة مورس العربية."
+    code: ".-. ... --",
+    answer: "رسم",
+    hint1: "تتكون من 3 حروف.",
+    hint2: ".-. = ر",
+    explanation: "الحروف هي: ر (.-.)، س (...)، م (--)."
   },
   {
     id: 'c2',
@@ -18,11 +18,11 @@ export const CIPHER_QUESTIONS = [
     difficulty: 'easy',
     points: 1,
     question: "فك الشفرة (أ=1, ب=2):",
-    code: "1 - 2 - 4",
-    answer: "أبث",
-    hint1: "كل رقم يقابله ترتيب الحرف في الأبجدية.",
-    hint2: "1=أ، 2=ب، 4=ث",
-    explanation: "هذا تعويض مباشر بالأرقام: 1 هو الحرف الأول (أ)، 2 هو الثاني (ب)، 4 هو الرابع (ث)."
+    code: "1 - 2",
+    answer: "أب",
+    hint1: "أرقام تدل على ترتيب الحروف.",
+    hint2: "الكلمة تعني الوالد.",
+    explanation: "1=أ، 2=ب. الكلمة هي (أب)."
   },
   {
     id: 'c3',
@@ -32,9 +32,9 @@ export const CIPHER_QUESTIONS = [
     question: "اقرأ الكلمة (معكوسة):",
     code: "ة د ا ي ق",
     answer: "قيادة",
-    hint1: "اقرأ الحروف من اليسار لليمين.",
-    hint2: "ق - ي - ا - د - ة",
-    explanation: "شفرة العكس تقرأ فيها الكلمة من النهاية للبداية. (ة د ا ي ق) تصبح (قيادة)."
+    hint1: "ابدأ القراءة من اليسار.",
+    hint2: "صفة يجب أن يتحلى بها الرائد.",
+    explanation: "عند عكس الحروف تظهر كلمة (قيادة)."
   },
   // --- MEDIUM (2 Points) ---
   {
@@ -45,21 +45,21 @@ export const CIPHER_QUESTIONS = [
     question: "فك شفرة مورس:",
     code: ".-- .- -.-. -..",
     answer: "وعد",
-    hint1: ".-- = و",
-    hint2: ".- = ع ، -.-. = د (لا، انتظر.. د = -..)",
-    explanation: "الوعد الكشفي يبدأ بـ (.--) واو، (.-) عين، (-..) دال."
+    hint1: "أول كلمة نحفظها في الكشافة.",
+    hint2: "تبدأ بحرف الواو (.--).",
+    explanation: "تشير إلى (الوعد) الكشفي."
   },
   {
     id: 'c5',
     type: 'cipher',
     difficulty: 'medium',
     points: 2,
-    question: "شفرة الأرقام (أبجد هوز - أ=1، ي=10، ك=20):",
-    code: "1 - 30 - 200",
-    answer: "ألر",
-    hint1: "حساب الجمل: أ=1، ل=30، ر=200",
-    hint2: "الكلمة هي أمر كشفي: (ألر) أو جزء منها.",
-    explanation: "في حساب الجمل (أبجد هوز): أ=1، ب=2، ج=3، د=4... ل=30، ر=200. الكلمة هي بداية (ألر! كن مستعداً)."
+    question: "شفرة الأرقام (أبجد هوز):",
+    code: "1 - 4 - 2",
+    answer: "أدب",
+    hint1: "حساب الجمل (أ=1، ب=2، ج=3، د=4).",
+    hint2: "صفة حميدة.",
+    explanation: "1(أ) - 4(د) - 2(ب) = أدب."
   },
   {
     id: 'c5_b',
@@ -67,23 +67,23 @@ export const CIPHER_QUESTIONS = [
     difficulty: 'medium',
     points: 2,
     question: "شفرة عكس الكلمات:",
-    code: "ة د ا ع س",
-    answer: "سعادة",
-    hint1: "اقرأ من اليسار.",
-    hint2: "س - ع - ا - د - ة",
-    explanation: "عكس الحروف يعطي كلمة (سعادة)."
+    code: "ل م ع",
+    answer: "عمل",
+    hint1: "اقرأ بالمقلوب.",
+    hint2: "ضد الكسل.",
+    explanation: "عكس (ل م ع) هو (عمل)."
   },
   {
     id: 'c5_c',
     type: 'cipher',
     difficulty: 'medium',
     points: 2,
-    question: "شفرة (أ=1, ب=2):",
-    code: "23 - 1 - 7 - 2",
-    answer: "واجب",
-    hint1: "و=23 (تقريباً في الترتيب الأبجدي العادي)",
-    hint2: "و - ا - ج - ب",
-    explanation: "ترتيب الحروف: و(27/23 حسب النظام)، ا(1)، ج(5/7)، ب(2). المقصود هنا الواجب."
+    question: "شفرة الترتيب (أ=1, ي=10):",
+    code: "27 - 1 - 4 - 10",
+    answer: "وادي",
+    hint1: "مكان نمشي فيه في الرحلة الخلوية.",
+    hint2: "يبدأ بحرف الواو (رقم 27).",
+    explanation: "و(27) ا(1) د(8) ي(28) - تقريباً حسب الترتيب الأبجدي، الكلمة هي وادي."
   },
   // --- HARD (3 Points) ---
   {
@@ -91,65 +91,111 @@ export const CIPHER_QUESTIONS = [
     type: 'cipher',
     difficulty: 'hard',
     points: 3,
-    question: "شفرة المرايا (اقرأ كل حرف وما يقابله):",
-    code: "ش ت ك ف ا",
-    answer: "استكشاف",
-    hint1: "الكلمة مقلوبة ومبعثرة.",
-    hint2: "رتب الحروف لتكون كلمة كشفية مشهورة.",
-    explanation: "الكلمة عند ترتيبها الصحيح تعني (استكشاف)، وهي جوهر الرحلة الخلوية."
+    question: "شفرة المرايا (رتب الحروف):",
+    code: "ب ي ر د ت",
+    answer: "تدريب",
+    hint1: "اقرأ من اليسار لليمين.",
+    hint2: "شيء نفعله لنتعلم المهارات.",
+    explanation: "الكلمة المعكوسة هي (تدريب)."
   },
   {
     id: 'c7',
     type: 'cipher',
     difficulty: 'hard',
     points: 3,
-    question: "شفرة الأرقام المعقدة (أ=1, ب=2... ي=10, ك=20...):",
-    code: "20 - 300 - 1 - 80",
-    answer: "كشاف",
-    hint1: "ك=20، ش=300، أ=1، ف=80",
-    hint2: "رتب القيم لتكوين الكلمة.",
-    explanation: "قيمة الحروف بحساب الجمل: ك(20) + ش(300) + ا(1) + ف(80) = كشاف."
+    question: "شفرة الأرقام الكبرى (جمل):",
+    code: "9 - 200 - 10 - 100",
+    answer: "طريق",
+    hint1: "نمشي عليه.",
+    hint2: "ط=9، ق=100.",
+    explanation: "بحساب الجمل: ط(9)+ر(200)+ي(10)+ق(100) = طريق."
   },
   {
     id: 'c8',
     type: 'cipher',
     difficulty: 'hard',
     points: 3,
-    question: "شفرة مورس المتقدمة:",
-    code: "-... .--. .-. . .--. .- .-. . -..",
-    answer: "كن مستعدا", // B P R E P A R E D or equivalent text
-    hint1: "الشعار الكشفي العالمي.",
-    hint2: "-... = B (Be)",
-    explanation: "هذا هو الشعار العالمي (Be Prepared) مترجم لمورس. كن مستعداً دائماً!"
+    question: "شفرة مورس:",
+    code: "... .- -.-. -..",
+    answer: "ساعد",
+    hint1: "فعل أمر للكشف.",
+    hint2: "سـ... عـ...",
+    explanation: "تترجم الشفرة إلى كلمة (ساعد)."
+  },
+  {
+    id: 'c9',
+    type: 'cipher',
+    difficulty: 'hard',
+    points: 3,
+    question: "شفرة الإزاحة (+1):",
+    code: "ح - ت - م",
+    answer: "جبل",
+    hint1: "ارجع حرفاً واحداً للوراء.",
+    hint2: "شيء مرتفع.",
+    explanation: "عند إرجاع كل حرف خطوة للوراء في الترتيب الأبجدي: ح->ج، ت->ب، م->ل."
+  },
+  {
+    id: 'c10',
+    type: 'cipher',
+    difficulty: 'hard',
+    points: 3,
+    question: "لغز: ما هو الشيء؟",
+    code: "أخضر في الأرض، أسود في السوق، أحمر في البيت؟",
+    answer: "الشاي",
+    hint1: "مشروب مشهور.",
+    hint2: "نغليه على النار.",
+    explanation: "الشاي (ورقه أخضر، يباع مجفف أسود، ويصبح أحمر عند الغلي)."
+  },
+  // --- ADDITIONAL EASY TO FILL POOL ---
+  {
+    id: 'e_extra1', difficulty: 'easy', points: 1, type: 'cipher',
+    question: "أكمل: الكشاف ...",
+    code: "ص . د .",
+    answer: "صادق",
+    hint1: "من قانون الكشافة.",
+    hint2: "الكلمة تنتهي بحرف القاف.",
+    explanation: "الكشاف صادق (البند الأول من القانون)."
+  },
+  {
+    id: 'e_extra2', difficulty: 'easy', points: 1, type: 'cipher',
+    question: "رمز الزهرة:",
+    code: "ز _ ب _ ة",
+    answer: "زنبقة",
+    hint1: "شعار الكشافة.",
+    hint2: "نوع من الزهور.",
+    explanation: "الزنبقة."
   }
 ];
 
-export const SIGN_QUESTIONS = []; // Placeholder for mixed logic
+export const SIGN_QUESTIONS = [];
 
-// Helper to get random items
-const getRandom = (arr, n) => arr.sort(() => 0.5 - Math.random()).slice(0, n);
+// Helper to get random items WITHOUT duplication from source
+// arr: Source array
+// n: Number of items needed
+const getRandom = (arr, n) => {
+  // If we don't have enough UNIQUE items, return all of them shuffled
+  if (arr.length <= n) {
+    return arr.sort(() => 0.5 - Math.random());
+  }
+  // Otherwise pick n unique random items
+  return arr.sort(() => 0.5 - Math.random()).slice(0, n);
+};
 
 export const generateGameLevels = () => {
   // We need 10 levels: 3 Easy, 4 Medium, 3 Hard
-  // Currently we mostly have Ciphers populated. Let's duplicate/mock for now to ensure we have enough data.
-  // In a real scenario we'd have 20+ items in the DB.
   
   const easy = CIPHER_QUESTIONS.filter(q => q.difficulty === 'easy');
   const medium = CIPHER_QUESTIONS.filter(q => q.difficulty === 'medium');
   const hard = CIPHER_QUESTIONS.filter(q => q.difficulty === 'hard');
 
-  // fallback if not enough questions
-  const selectedEasy = getRandom([...easy, ...easy], 3);
-  const selectedMedium = getRandom([...medium, ...medium], 4);
-  const selectedHard = getRandom([...hard, ...hard], 3);
+  // Select randomly from the available Unique pools
+  // We DO NOT spread [...easy, ...easy] anymore to prevent duplicates.
+  const selectedEasy = getRandom(easy, 3);
+  const selectedMedium = getRandom(medium, 4);
+  const selectedHard = getRandom(hard, 3);
 
-  // Combine and Shuffle strictly by difficulty tiers? Or mix?
-  // User asked for "Easy -> Medium -> Hard" progression usually, or just mixed?
-  // "levels... easy 1 pt, medium 2 pt..." implies progression.
-  // Let's order them: Easy -> Medium -> Hard to simulate "levels".
-  
   return [...selectedEasy, ...selectedMedium, ...selectedHard].map((level, index) => ({
     ...level,
-    index: index + 1 // Add level number
+    index: index + 1
   }));
 };
