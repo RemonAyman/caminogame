@@ -3,7 +3,7 @@ import React from 'react';
 const WelcomeScreen = ({ onStart }) => {
   return (
     <div className="glass-card" style={{ maxWidth: '700px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <h1>مغامرة الرحلة الخلوية</h1>
+      <h1>Camino Journey</h1>
       
       <div style={{ 
         width: '180px', 

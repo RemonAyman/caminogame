@@ -4,7 +4,7 @@ const PatrolReport = ({ patrol, score, timeTaken }) => {
   return (
     <div className="glass-card" style={{ maxWidth: '600px', width: '100%', textAlign: 'right' }}>
       <h2 style={{ textAlign: 'center', borderBottom: '2px solid var(--primary)', paddingBottom: '1rem' }}>
-        📝 تقرير الرحلة الخلوية
+        📝 تقرير Camino Journey
       </h2>
       
       <div style={{ marginTop: '2rem', fontSize: '1.1rem', lineHeight: '1.8' }}>
