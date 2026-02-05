@@ -8,15 +8,56 @@ function App() {
   const [scene, setScene] = useState('welcome'); // welcome, prep, game
   const [patrolData, setPatrolData] = useState(null);
 
-  const handleStart = () => setScene('prep');
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = React.useRef(null);
+
+  const handleStart = () => {
+    setScene('prep');
+    // Attempt to play music on first interaction
+    if (audioRef.current) {
+        audioRef.current.play().catch(error => {
+            console.log("Audio play failed:", error);
+        });
+    }
+  };
 
   const handlePatrolReady = (data) => {
     setPatrolData(data);
     setScene('game');
   };
 
+  const toggleMute = () => {
+    if (audioRef.current) {
+        audioRef.current.muted = !isMuted;
+        setIsMuted(!isMuted);
+    }
+  };
+
   return (
     <div className="App">
+      <audio ref={audioRef} src="/scout_music.mp3" loop />
+      
+      <div style={{ position: 'fixed', top: '10px', left: '10px', zIndex: 1000 }}>
+        <button 
+            onClick={toggleMute}
+            style={{
+                background: 'rgba(255, 255, 255, 0.8)',
+                border: '2px solid var(--primary)',
+                borderRadius: '50%',
+                width: '40px',
+                height: '40px',
+                cursor: 'pointer',
+                fontSize: '1.2rem',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+            }}
+            title={isMuted ? "تسغيل الصوت" : "كتم الصوت"}
+        >
+            {isMuted ? "🔇" : "🔊"}
+        </button>
+      </div>
+
       <AnimatePresence mode="wait">
         <motion.div
           key={scene}
