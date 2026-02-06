@@ -112,6 +112,10 @@ h1 {
     min-height: 100vh;
     overflow-y: auto;
     padding: 1rem 0;
+    /* Adjust corner image for mobile: smaller size (120px) */
+    background: 
+      url('/المجموعة.png') top left / 120px auto no-repeat fixed,
+      url('/scout_hike_map_bg_1770170435134.png') center center / cover no-repeat fixed;
   }
   
   .game-container {
