@@ -337,42 +337,7 @@ export const QUESTION_BANK = [
     explanation: "الخطوط المتوازية التي تنتهي بأقواس تعني: كوبري.",
     key: "كوبري"
   },
-  {
-    id: 's28', type: 'sign', difficulty: 'medium', points: 2,
-    question: "تعليمات:",
-    signId: 'water_way',
-    answer: "الطريق الى المياه",
-    accepted: ["طريق الماء", "المياه", "البحث عن ماء"],
-    explanation: "خط متعرج مع سهم يعني: الطريق إلى المياه.",
-    key: "المياه"
-  },
-  {
-    id: 's29', type: 'sign', difficulty: 'hard', points: 3,
-    question: "الدلالة:",
-    signId: 'war',
-    answer: "الدلالة على الحرب",
-    accepted: ["حرب", "اشارة حرب", "خطر حرب"],
-    explanation: "الخطوط المتقاطعة بهذا الشكل تعني: الدلالة على الحرب.",
-    key: "حرب"
-  },
-  {
-    id: 's30', type: 'sign', difficulty: 'hard', points: 3,
-    question: "الدلالة:",
-    signId: 'peace',
-    answer: "الدلالة على السلم",
-    accepted: ["سلم", "سلام", "امان"],
-    explanation: "العلامات المتكررة (>>) تعني: الدلالة على السلم (السلام).",
-    key: "سلم"
-  },
-  {
-    id: 's31', type: 'sign', difficulty: 'medium', points: 2,
-    question: "تجمع:",
-    signId: 'assembly',
-    answer: "نقطة تجمع",
-    accepted: ["تجمع", "مكان تجمع"],
-    explanation: "الأسهم المتقابلة نحو نقطة واحدة تعني: نقطة تجمع.",
-    key: "تجمع"
-  },
+
   {
     id: 'c1', type: 'cipher', difficulty: 'easy', points: 1,
     question: "فك شفرة مورس التالية:",
