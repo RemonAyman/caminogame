@@ -126,6 +126,18 @@ const HikeGameEngine = ({ patrol }) => {
               >
                 📖 {hintRevealed ? "تم الكشف" : "مساعدة (-5)"}
               </button>
+
+              {/* Minified Group Logo */}
+              <img 
+                src="/المجموعة.png" 
+                alt="Group Logo" 
+                style={{ 
+                  height: '40px', 
+                  width: 'auto', 
+                  marginLeft: '0.5rem',
+                  filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.3))'
+                }} 
+              />
             </div>
           </div>
 
