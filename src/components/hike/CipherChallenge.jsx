@@ -9,21 +9,39 @@ const CipherChallenge = ({ data, onCorrect }) => {
   const [success, setSuccess] = useState(false);
 
   const normalizeArabic = (text) => {
+    if (!text) return '';
     return text
       .trim()
-      .replace(/أ|إ|آ/g, 'ا')        // Normalize Alef
-      .replace(/ة/g, 'ه')            // Normalize Ta Marbuta to Ha
-      .replace(/ى/g, 'ي')            // Normalize Alef Maqsura to Ya
-      .replace(/^ال/, '');           // Remove 'Al' definite article prefix
+      .replace(/[^\w\s\u0600-\u06FF]/g, '') // Remove punctuation
+      .replace(/\s+/g, ' ')               // Normalize spaces
+      .replace(/أ|إ|آ/g, 'ا')              // Normalize Alef
+      .replace(/ة/g, 'ه')                  // Normalize Ta Marbuta to Ha
+      .replace(/ى/g, 'ي')                  // Normalize Alef Maqsura to Ya
+      .replace(/^ال/, '');                 // Remove 'Al' definite article prefix
   };
 
   const checkAnswer = () => {
-    const cleanAnswer = normalizeArabic(answer);
-    const cleanCorrect = normalizeArabic(data.answer);
+    const userAns = normalizeArabic(answer);
+    const correctAns = normalizeArabic(data.answer);
+    const key = data.key ? normalizeArabic(data.key) : null;
     
-    // Check if correct is in array of acceptable answers?
-    const isMatch = cleanAnswer === cleanCorrect || 
-      (data.accepted && data.accepted.some(a => normalizeArabic(a) === cleanAnswer));
+    // 1. Exact match (normalized)
+    let isMatch = userAns === correctAns;
+
+    // 2. Check accepted variants
+    if (!isMatch && data.accepted) {
+      isMatch = data.accepted.some(a => normalizeArabic(a) === userAns);
+    }
+
+    // 3. Substring/Keyword match (if a key is provided or for longer answers)
+    if (!isMatch && key) {
+      isMatch = userAns.includes(key);
+    }
+
+    // 4. Fallback: if user answers with a long sentence containing the core answer
+    if (!isMatch && userAns.length > correctAns.length) {
+      isMatch = userAns.includes(correctAns);
+    }
 
     if (isMatch) { 
       setFeedback('correct');
