@@ -41,6 +41,8 @@ const HikeGameEngine = ({ patrol }) => {
     const currentPoints = levels[currentLevelIndex].points;
     if (success) {
       setScore(s => s + currentPoints);
+    } else {
+      setScore(s => s - currentPoints);
     }
     
     // Reset hint state for next level
@@ -49,12 +51,11 @@ const HikeGameEngine = ({ patrol }) => {
     if (currentLevelIndex < levels.length - 1) {
       setCurrentLevelIndex(prev => prev + 1);
     } else {
-      finishGame(success, currentPoints);
+      finishGame();
     }
   };
 
-  const finishGame = (lastSuccess, lastPoints) => {
-    if (lastSuccess) setScore(s => s + lastPoints); // Add last level points if won
+  const finishGame = () => {
     setEndTime(Date.now());
     setGameFinished(true);
   };

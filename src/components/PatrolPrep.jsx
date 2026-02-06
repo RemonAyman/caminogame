@@ -15,7 +15,7 @@ const PatrolPrep = ({ onReady }) => {
     if (patrolName) {
       onReady({ patrolName, scoutCount: 5, raedName: 'القائد' });
     } else {
-      alert("الرجال اختر اسم الطليعة!");
+      alert("يا بطل اختر اسم الرهط!");
     }
   };
 

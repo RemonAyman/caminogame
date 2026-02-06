@@ -23,11 +23,12 @@ export const ValleySign = ({ className }) => (
 
 // 3. Stones (أحجار) - Stack of 4 ovals/rectangles
 export const StonesSign = ({ className }) => (
-  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-    <rect x="20" y="20" width="15" height="25" rx="5" transform="rotate(-10 20 20)" />
-    <rect x="35" y="30" width="15" height="25" rx="5" transform="rotate(10 35 30)" />
-    <rect x="20" y="50" width="15" height="25" rx="5" transform="rotate(20 20 50)" />
-    <rect x="40" y="60" width="15" height="25" rx="5" transform="rotate(-5 40 60)" />
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="4">
+    {/* PDF Page 71: 4 ovals in a slanted arrangement */}
+    <ellipse cx="30" cy="30" rx="8" ry="12" transform="rotate(-15 30 30)" />
+    <ellipse cx="45" cy="45" rx="8" ry="12" transform="rotate(-15 45 45)" />
+    <ellipse cx="60" cy="60" rx="8" ry="12" transform="rotate(-15 60 60)" />
+    <ellipse cx="75" cy="75" rx="8" ry="12" transform="rotate(-15 75 75)" />
   </svg>
 );
 
@@ -209,12 +210,11 @@ export const SandDunesSign = ({ className }) => (
 
 // 21. Windmill (طاحونة هواء)
 export const WindmillSign = ({ className }) => (
-  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="3">
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="4">
+     {/* PDF Page 70: Vertical pole with X on top */}
      <line x1="50" y1="90" x2="50" y2="40" />
-     <path d="M50 40 L80 20" />
-     <path d="M50 40 L20 20" />
-     <line x1="20" y1="20" x2="20" y2="40" /> 
-     <line x1="80" y1="20" x2="80" y2="40" />
+     <line x1="30" y1="20" x2="70" y2="60" />
+     <line x1="70" y1="20" x2="30" y2="60" />
   </svg>
 );
 
@@ -255,10 +255,17 @@ export const PalmTreeSign = ({ className }) => (
 
 // 26. Christian Graves (مقابر مسيحيين) - Crosses
 export const ChristianGravesSign = ({ className }) => (
-  <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-     <text x="30" y="40" fontSize="30" textAnchor="middle" stroke="none" fill="currentColor">+</text>
-     <text x="50" y="40" fontSize="30" textAnchor="middle" stroke="none" fill="currentColor">+</text>
-     <text x="70" y="40" fontSize="30" textAnchor="middle" stroke="none" fill="currentColor">+</text>
+  <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="2">
+     {/* PDF Page 70: Box with grid of pluses */}
+     <rect x="10" y="10" width="80" height="40" strokeWidth="3" />
+     <path d="M25 20 V30 M20 25 H30" />
+     <path d="M40 20 V30 M35 25 H45" />
+     <path d="M55 20 V30 M50 25 H60" />
+     <path d="M70 20 V30 M65 25 H75" />
+     <path d="M25 35 V45 M20 40 H30" />
+     <path d="M40 35 V45 M35 40 H45" />
+     <path d="M55 35 V45 M50 40 H60" />
+     <path d="M70 35 V45 M65 40 H75" />
   </svg>
 );
 
@@ -301,9 +308,15 @@ export const TreesSign = ({ className }) => (
 // Image shows: "مقابر مسلمين" -> Dashed lines in a box? Or just dashes?
 // Looking at image: It looks like a rectangle with dashes inside.
 export const MuslimGravesSign = ({ className }) => (
-   <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-     <rect x="10" y="10" width="80" height="40" strokeDasharray="5,5" />
-     <line x1="20" y1="30" x2="80" y2="30" strokeDasharray="5,5" />
+   <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="2">
+     {/* PDF Page 70: Box with dashed lines grid */}
+     <rect x="10" y="10" width="80" height="40" strokeWidth="3" />
+     <line x1="15" y1="25" x2="30" y2="25" strokeDasharray="3,3" />
+     <line x1="35" y1="25" x2="50" y2="25" strokeDasharray="3,3" />
+     <line x1="55" y1="25" x2="70" y2="25" strokeDasharray="3,3" />
+     <line x1="15" y1="40" x2="30" y2="40" strokeDasharray="3,3" />
+     <line x1="35" y1="40" x2="50" y2="40" strokeDasharray="3,3" />
+     <line x1="55" y1="40" x2="70" y2="40" strokeDasharray="3,3" />
    </svg>
 );
 
@@ -345,8 +358,11 @@ export const DangerAllDirectionsSign = ({ className }) => (
 // 36. Bridge (كوبري)
 export const BridgeSign = ({ className }) => (
   <svg viewBox="0 0 100 50" className={className} stroke="currentColor" fill="none" strokeWidth="3">
-    <line x1="10" y1="40" x2="90" y2="40" />
-    <path d="M20 40 Q50 10 80 40" />
+    {/* PDF Page 70: )---( style */}
+    <line x1="20" y1="20" x2="80" y2="20" />
+    <line x1="20" y1="35" x2="80" y2="35" />
+    <path d="M20 15 Q10 27.5 20 40" />
+    <path d="M80 15 Q90 27.5 80 40" />
   </svg>
 );
 

@@ -17,8 +17,9 @@
 
 body {
   font-family: var(--font-arabic);
-  background: url('/scout_hike_map_bg_1770170435134.png') no-repeat center center fixed;
-  background-size: cover;
+  background: 
+    url('/المجموعة.png') top left / 250px auto no-repeat fixed, /* Corner Image */
+    url('/scout_hike_map_bg_1770170435134.png') center center / cover no-repeat fixed; /* Main Background */
   color: #3e2723;
   overflow: hidden;
   height: 100vh;

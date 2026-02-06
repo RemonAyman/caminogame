@@ -227,7 +227,7 @@ export const QUESTION_BANK = [
     question: "طبيعة السكان:",
     signId: 'uncooperative',
     answer: "الاهالي في هذه المنطقة غير متعاونين",
-    accepted: ["غير متعاونين", "لا تخالط", "اعداء", "ناس وحشة", "غير طيبين"],
+    accepted: ["غير متعاونين", "لا تخالط", "اعداء", "ناس وحشة", "غير طيبين", "الاهالي غير متعاونين", "غير متعاونون"],
     hint1: "شكل رباعي مائل.",
     hint2: "تحذير اجتماعي.",
     explanation: "الشكل يعني: الأهالي في هذه المنطقة غير متعاونين (لا تخالط أهل هذا البلد).",
@@ -238,13 +238,141 @@ export const QUESTION_BANK = [
     question: "طبيعة المنطقة:",
     signId: 'cooperative',
     answer: "اهل المنطقة متعاونين",
-    accepted: ["متعاونين", "ناس طيبين", "اصدقاء", "تعاون", "خير", "كويسين"],
+    accepted: ["متعاونين", "ناس طيبين", "اصدقاء", "تعاون", "خير", "كويسين", "متعاونون", "اهل المنطقة متعاونون"],
     hint1: "دوائر متداخلة.",
     hint2: "اتحاد وترابط.",
     explanation: "الثلاث دوائر المتداخلة تعني: أهل المنطقة متعاونين.",
     key: "متعاونين"
   },
-  // --- CIPHER QUESTIONS (ARABIC MORSE) ---
+  {
+    id: 's19', type: 'sign', difficulty: 'easy', points: 1,
+    question: "حالة الطريق:",
+    signId: 'safe_way',
+    answer: "الطريق امان",
+    accepted: ["امان", "طريق امان", "سليم", "الطريق سليم", "امن"],
+    hint1: "سهم وعلامات.",
+    hint2: "لا يوجد خطر.",
+    explanation: "السهم الذي يحوي علامتي (>) يعني: الطريق أمان.",
+    key: "امان"
+  },
+  {
+    id: 's20', type: 'sign', difficulty: 'medium', points: 2,
+    question: "طبيعة الارض:",
+    signId: 'sand_dunes',
+    answer: "كثبان رملية",
+    accepted: ["رمل", "رملة", "جبال رمل", "كثبان"],
+    hint1: "تجمعات رملية.",
+    hint2: "شكل موجي.",
+    explanation: "الشكل الموجي المنقط يعني: كثبان رملية.",
+    key: "كثبان"
+  },
+  {
+    id: 's21', type: 'sign', difficulty: 'easy', points: 1,
+    question: "ماذا يعني هذا الرمز؟",
+    signId: 'windmill',
+    answer: "طاحونة هواء",
+    accepted: ["طاحونة", "هواء", "طاحونه"],
+    hint1: "تستخدم الرياح.",
+    hint2: "عمود عليه شكل X.",
+    explanation: "العمود الذي يعلوه حرف X يعني: طاحونة هواء.",
+    key: "طاحونة"
+  },
+  {
+    id: 's22', type: 'sign', difficulty: 'easy', points: 1,
+    question: "مكان عبادة:",
+    signId: 'church',
+    answer: "كنيسة",
+    accepted: ["كنيسه", "بيت الله"],
+    hint1: "يعلوها صليب.",
+    explanation: "المبنى الذي يعلوه صليب هو: كنيسة.",
+    key: "كنيسة"
+  },
+  {
+    id: 's23', type: 'sign', difficulty: 'easy', points: 1,
+    question: "مكان عبادة:",
+    signId: 'mosque',
+    answer: "مسجد",
+    accepted: ["جامع", "بيت الله"],
+    hint1: "يعلوه هلال.",
+    explanation: "المبنى الذي يعلوه هلال هو: مسجد.",
+    key: "مسجد"
+  },
+  {
+    id: 's24', type: 'sign', difficulty: 'easy', points: 1,
+    question: "نوع من الاشجار:",
+    signId: 'palm',
+    answer: "نخيل",
+    accepted: ["نخل", "نخلة", "نخله"],
+    hint1: "شجر البلح.",
+    explanation: "الرمز الذي يشبه الريش المفرود يعني: نخيل.",
+    key: "نخيل"
+  },
+  {
+    id: 's25', type: 'sign', difficulty: 'medium', points: 2,
+    question: "حالة المياه:",
+    signId: 'stagnant_water',
+    answer: "ماء راكد",
+    accepted: ["مياه راكدة", "مياه ملوثة", "مياه غير جارية", "راكد"],
+    hint1: "غير جاري.",
+    explanation: "البيضاوي الذي به خطوط عرضية يعني: ماء راكد.",
+    key: "راكد"
+  },
+  {
+    id: 's26', type: 'sign', difficulty: 'medium', points: 2,
+    question: "تعليمات:",
+    signId: 'stop_wait',
+    answer: "قف وانتظر",
+    accepted: ["انتظر", "توقف وانتظر", "قف"],
+    hint1: "مستطيل داخل مستطيل.",
+    explanation: "المستطيلان المتداخلان يعنيان: قف وانتظر.",
+    key: "انتظر"
+  },
+  {
+    id: 's27', type: 'sign', difficulty: 'medium', points: 2,
+    question: "ماذا يوجد هنا؟",
+    signId: 'bridge',
+    answer: "كوبري",
+    accepted: ["جسر", "قنطرة"],
+    hint1: "فوق الماء.",
+    explanation: "الخطوط المتوازية التي تنتهي بأقواس تعني: كوبري.",
+    key: "كوبري"
+  },
+  {
+    id: 's28', type: 'sign', difficulty: 'medium', points: 2,
+    question: "تعليمات:",
+    signId: 'water_way',
+    answer: "الطريق الى المياه",
+    accepted: ["طريق الماء", "المياه", "البحث عن ماء"],
+    explanation: "خط متعرج مع سهم يعني: الطريق إلى المياه.",
+    key: "المياه"
+  },
+  {
+    id: 's29', type: 'sign', difficulty: 'hard', points: 3,
+    question: "الدلالة:",
+    signId: 'war',
+    answer: "الدلالة على الحرب",
+    accepted: ["حرب", "اشارة حرب", "خطر حرب"],
+    explanation: "الخطوط المتقاطعة بهذا الشكل تعني: الدلالة على الحرب.",
+    key: "حرب"
+  },
+  {
+    id: 's30', type: 'sign', difficulty: 'hard', points: 3,
+    question: "الدلالة:",
+    signId: 'peace',
+    answer: "الدلالة على السلم",
+    accepted: ["سلم", "سلام", "امان"],
+    explanation: "العلامات المتكررة (>>) تعني: الدلالة على السلم (السلام).",
+    key: "سلم"
+  },
+  {
+    id: 's31', type: 'sign', difficulty: 'medium', points: 2,
+    question: "تجمع:",
+    signId: 'assembly',
+    answer: "نقطة تجمع",
+    accepted: ["تجمع", "مكان تجمع"],
+    explanation: "الأسهم المتقابلة نحو نقطة واحدة تعني: نقطة تجمع.",
+    key: "تجمع"
+  },
   {
     id: 'c1', type: 'cipher', difficulty: 'easy', points: 1,
     question: "فك شفرة مورس التالية:",
@@ -286,17 +414,6 @@ export const QUESTION_BANK = [
     hint2: "شعار الكشاف.",
     explanation: "الرموز تعني: ا - س - ت - ع - د.",
     key: "استعد"
-  },
-  {
-    id: 'c5', type: 'cipher', difficulty: 'medium', points: 2,
-    question: "تحية:",
-    code: "... .-.. .- --", // "سلام"
-    answer: "سلام",
-    accepted: ["السلام", "تحية"],
-    hint1: "تحية الإسلام.",
-    hint2: "عكس الحرب.",
-    explanation: "الرموز (س - ل - ا - م) تعني: سلام.",
-    key: "سلام"
   },
   {
     id: 'c6', type: 'cipher', difficulty: 'hard', points: 3,
