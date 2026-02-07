@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import WelcomeScreen from './components/WelcomeScreen';
 import PatrolPrep from './components/PatrolPrep';
 import HikeGameEngine from './components/HikeGameEngine';
@@ -81,6 +82,7 @@ function App() {
       <footer className="footer">
         مجموعة جنود المسيح الكشفية 2026 - رحلة خلوية
       </footer>
+      <Analytics />
     </div>
   );
 }
