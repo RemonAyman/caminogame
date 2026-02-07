@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Analytics } from "@vercel/analytics/react";
 import WelcomeScreen from './components/WelcomeScreen';
 import PatrolPrep from './components/PatrolPrep';
 import HikeGameEngine from './components/HikeGameEngine';
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <div className="App">
+      <Analytics />
       <audio ref={audioRef} src="/scout_music.mp3" loop />
       
       {scene !== 'intro' && (

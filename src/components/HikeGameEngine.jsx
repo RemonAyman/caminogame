@@ -3,6 +3,7 @@ import CipherChallenge from './hike/CipherChallenge';
 import PatrolReport from './PatrolReport';
 import Leaderboard from './Leaderboard';
 import { generateGameLevels } from '../data/GameData';
+import { updatePatrolScore } from '../services/scoreService';
 
 const HikeGameEngine = ({ patrol }) => {
   const [levels, setLevels] = useState([]);
@@ -39,10 +40,17 @@ const HikeGameEngine = ({ patrol }) => {
 
   const handleNext = (success = true) => {
     const currentPoints = levels[currentLevelIndex].points;
+    let newScore = score;
     if (success) {
-      setScore(s => s + currentPoints);
+      setScore(s => {
+          newScore = s + currentPoints;
+          return newScore;
+      });
     } else {
-      setScore(s => s - currentPoints);
+      setScore(s => {
+          newScore = s - currentPoints;
+          return newScore;
+      });
     }
     
     // Reset hint state for next level
@@ -51,13 +59,18 @@ const HikeGameEngine = ({ patrol }) => {
     if (currentLevelIndex < levels.length - 1) {
       setCurrentLevelIndex(prev => prev + 1);
     } else {
-      finishGame();
+      // Must pass the latest score
+      finishGame(newScore);
     }
   };
 
-  const finishGame = () => {
+  const finishGame = (finalScore) => {
     setEndTime(Date.now());
     setGameFinished(true);
+    // Send score to Firebase
+    if (patrol?.patrolName) {
+        updatePatrolScore(patrol.patrolName, finalScore);
+    }
   };
 
   if (levels.length === 0) return <div>جاري تجهيز المسارات...</div>;
@@ -66,7 +79,7 @@ const HikeGameEngine = ({ patrol }) => {
 
   return (
     <div className="game-content">
-      
+        
       {!gameFinished ? (
         <>
           <div style={{ 
@@ -164,13 +177,7 @@ const HikeGameEngine = ({ patrol }) => {
       ) : (
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <PatrolReport patrol={patrol} score={score} timeTaken={Math.floor((endTime - startTime) / 1000) + " ثانية"} />
-          <Leaderboard currentEntry={{
-            patrolName: patrol.patrolName,
-            raedName: patrol.raedName,
-            score: score,
-            time: Math.floor((endTime - startTime) / 1000) + " ثانية",
-            timestamp: startTime
-          }} />
+          <Leaderboard />
         </div>
       )}
     </div>

@@ -30,7 +30,7 @@ const IntroVideo = ({ onFinish }) => {
         aspectRatio: '16/9'
       }}>
         <iframe
-          src="https://player.cloudinary.com/embed/?cloud_name=dynfn8jeb&public_id=WhatsApp_Video_2026-02-06_at_18.24.42_jkucmi&autoplay=true&muted=true"
+          src="https://player.cloudinary.com/embed/?cloud_name=dynfn8jeb&public_id=WhatsApp_Video_2026-02-06_at_18.24.42_jkucmi&autoplay=true&muted=false"
           width="100%"
           height="100%"
           allow="autoplay; fullscreen; encrypted-media; picture-in-picture"

@@ -1,40 +1,32 @@
 import React, { useEffect, useState } from 'react';
+import { subscribeToLeaderboard } from '../services/scoreService';
 
-const Leaderboard = ({ currentEntry }) => {
+const Leaderboard = () => {
+  const [patrolScores, setPatrolScores] = useState({});
+
   useEffect(() => {
-    // Load existing scores
-    const savedScores = JSON.parse(localStorage.getItem('scout_scores')) || [];
-    
-    // Check if we already saved this specific timestamp to avoid duplicates on re-render
-    const exists = savedScores.some(s => s.timestamp === currentEntry.timestamp);
-    
-    if (!exists && currentEntry) {
-      const newScores = [...savedScores, currentEntry];
-      localStorage.setItem('scout_scores', JSON.stringify(newScores));
-    }
-  }, [currentEntry]);
+    // Subscribe to live score updates
+    const unsubscribe = subscribeToLeaderboard((data) => {
+        if (data) {
+            setPatrolScores(data);
+        }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div style={{ marginTop: '2rem', width: '100%', padding: '1rem', background: 'rgba(255,255,255,0.9)', borderRadius: '10px', direction: 'rtl' }}>
-      <h3 style={{ borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem', color: '#2c3e50' }}>🏆 ترتيب الرهوط (Total Points)</h3>
-      <p style={{ fontSize: '0.8rem', color: '#7f8c8d' }}>* يتم تجميع نقاط كل رهط بناءً على المشاركات محفوظة على هذا الجهاز</p>
+      <h3 style={{ borderBottom: '2px solid var(--primary)', paddingBottom: '0.5rem', color: '#2c3e50' }}>🏆 ترتيب الرهوط (النقاط التراكمية)</h3>
+      <p style={{ fontSize: '0.8rem', color: '#7f8c8d' }}>* يتم تجميع نقاط كل رهط بناءً على مشاركات جميع الكشافة</p>
       
       <ul style={{ listStyle: 'none', padding: 0, marginTop: '1rem' }}>
         {(() => {
-          const scores = JSON.parse(localStorage.getItem('scout_scores') || '[]');
-          
-          // Aggergate scores by patrol
-          const patrolTotals = scores.reduce((acc, curr) => {
-            const name = curr.patrolName || 'غير معروف';
-            acc[name] = (acc[name] || 0) + (curr.score || 0);
-            return acc;
-          }, {});
-
           // Convert to array and sort
-          const sortedPatrols = Object.entries(patrolTotals)
+          const sortedPatrols = Object.entries(patrolScores)
             .sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
 
-          if (sortedPatrols.length === 0) return <li style={{textAlign:'center'}}>لا توجد نتائج بعد</li>;
+          if (sortedPatrols.length === 0) return <li style={{textAlign:'center'}}>جاري تحميل النتائج...</li>;
 
           return sortedPatrols.map(([name, totalScore], i) => (
              <li key={name} style={{ 
