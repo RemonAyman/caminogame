@@ -404,6 +404,50 @@ export const TelephoneSign = ({ className }) => (
   </svg>
 );
 
+// 41. Go To Water (الطريق إلى المياه) - Arrow to waves
+export const GoToWaterSign = ({ className }) => (
+  <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
+    <path d="M70 20 Q80 10 90 20 T110 20" transform="translate(-20, 0)" /> 
+    <path d="M70 30 Q80 20 90 30 T110 30" transform="translate(-20, 0)" />
+    <line x1="10" y1="25" x2="60" y2="25" markerEnd="url(#arrow)" />
+  </svg>
+);
+
+// 42. Split due to Thieves (تفرقنا بسبب اللصوص) - Circle with outward arrows
+export const SplitThievesSign = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="3">
+    <circle cx="50" cy="50" r="15" />
+    <line x1="50" y1="35" x2="50" y2="10" markerEnd="url(#arrow)" />
+    <line x1="50" y1="65" x2="50" y2="90" markerEnd="url(#arrow)" />
+    <line x1="65" y1="50" x2="90" y2="50" markerEnd="url(#arrow)" />
+    <line x1="35" y1="50" x2="10" y2="50" markerEnd="url(#arrow)" />
+  </svg>
+);
+
+// 43. Message 3 Steps (رسالة بعد 3 خطوات) - Rectangle with number 3 and arrow
+export const Message3StepsSign = ({ className }) => (
+  <svg viewBox="0 0 100 60" className={className} stroke="currentColor" fill="none" strokeWidth="3">
+    <rect x="10" y="15" width="30" height="30" />
+    <text x="25" y="35" fontSize="15" textAnchor="middle" stroke="none" fill="currentColor">3</text>
+    <line x1="45" y1="30" x2="90" y2="30" markerEnd="url(#arrow)" />
+  </svg>
+);
+
+// 44. War (حرب) - Big X
+export const WarSign = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="5">
+    <line x1="20" y1="20" x2="80" y2="80" />
+    <line x1="80" y1="20" x2="20" y2="80" />
+  </svg>
+);
+
+// 45. Peace (سلم) - V shape
+export const PeaceSign = ({ className }) => (
+  <svg viewBox="0 0 100 100" className={className} stroke="currentColor" fill="none" strokeWidth="5">
+    <polyline points="20,20 50,80 80,20" />
+  </svg>
+);
+
 
 export const SignsMap = {
   river: RiverSign,
@@ -444,8 +488,26 @@ export const SignsMap = {
   not_this_way: NotThisWaySign,
   danger_all: DangerAllDirectionsSign,
   bridge: BridgeSign,
-  train: TrainLineSign,
-  drinkable: DrinkableWaterSign,
-  not_drinkable: NotDrinkableWaterSign,
-  telephone: TelephoneSign
+  
+  // Mapped to match GameData.js IDs
+  railway: TrainLineSign,        // GameData: railway
+  train: TrainLineSign,          // Keep fallback
+  
+  good_water: DrinkableWaterSign, // GameData: good_water
+  drinkable: DrinkableWaterSign,  // Keep fallback
+  
+  bad_water: NotDrinkableWaterSign, // GameData: bad_water
+  not_drinkable: NotDrinkableWaterSign, // Keep fallback
+  
+  telephone: TelephoneSign,
+  
+  // New added signs
+  go_to_water: GoToWaterSign,
+  split_thieves: SplitThievesSign,
+  message_3_steps: Message3StepsSign,
+  war: WarSign,
+  peace: PeaceSign,
+  
+  // Alias for similar meaning/structure if needed
+  message_3_steps_hidden: Message3StepsSign 
 };
