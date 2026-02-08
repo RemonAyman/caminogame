@@ -5,12 +5,13 @@ import { getFirestore } from "firebase/firestore";
 // Your web app's Firebase configuration
 // TODO: Replace with your project's config keys from Firebase Console
 const firebaseConfig = {
-  apiKey: "AIzaVy...",
-  authDomain: "your-project.firebaseapp.com",
-  projectId: "your-project-id",
-  storageBucket: "your-project.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
+  apiKey: "AIzaSyB8WkAJGuHUXr6kC7rYD7SwKVVcgoO6Mis",
+  authDomain: "caminogame-2e5f9.firebaseapp.com",
+  projectId: "caminogame-2e5f9",
+  storageBucket: "caminogame-2e5f9.firebasestorage.app",
+  messagingSenderId: "282744538733",
+  appId: "1:282744538733:web:9786f07be4416bff38e164",
+  measurementId: "G-3R7V0YGBXQ"
 };
 
 // Initialize Firebase
