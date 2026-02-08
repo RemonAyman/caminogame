@@ -1,5 +1,6 @@
 import { db } from '../firebaseConfig';
 import { doc, runTransaction, onSnapshot, setDoc, getDoc } from "firebase/firestore";
+import { PATROLS } from '../constants';
 
 const COLLECTION_NAME = "rahat_scores";
 const DOC_ID = "leaderboard";
@@ -10,14 +11,11 @@ const initializeLeaderboard = async () => {
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists()) {
-        await setDoc(docRef, {
-            "سكة السلامة": 0,
-            "GPS": 0,
-            "مويت": 0,
-            "Camino": 0
-        });
+        const initialScores = {};
+        PATROLS.forEach(p => initialScores[p] = 0);
+        await setDoc(docRef, initialScores);
     }
-};
+    };
 
 export const updatePatrolScore = async (patrolName, scoreToAdd) => {
     const docRef = doc(db, COLLECTION_NAME, DOC_ID);

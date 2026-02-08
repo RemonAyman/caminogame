@@ -45,19 +45,8 @@ function App() {
         <div style={{ position: 'fixed', top: '10px', left: '10px', zIndex: 1000 }}>
           <button 
               onClick={toggleMute}
-              style={{
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  border: '2px solid var(--primary)',
-                  borderRadius: '50%',
-                  width: '40px',
-                  height: '40px',
-                  cursor: 'pointer',
-                  fontSize: '1.2rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-              }}
-              title={isMuted ? "تسغيل الصوت" : "كتم الصوت"}
+              className="mute-btn"
+              title={isMuted ? "شغل الصوت" : "اكتم الصوت"}
           >
               {isMuted ? "🔇" : "🔊"}
           </button>

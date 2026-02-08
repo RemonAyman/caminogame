@@ -4,6 +4,7 @@ import PatrolReport from './PatrolReport';
 import Leaderboard from './Leaderboard';
 import { generateGameLevels } from '../data/GameData';
 import { updatePatrolScore } from '../services/scoreService';
+import { GAME_CONFIG } from '../constants';
 
 const HikeGameEngine = ({ patrol }) => {
   const [levels, setLevels] = useState([]);
@@ -16,6 +17,7 @@ const HikeGameEngine = ({ patrol }) => {
   // Hint System State
   const [hintRevealed, setHintRevealed] = useState(false);
   const [penaltyMessage, setPenaltyMessage] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const openPdf = () => {
     window.open('https://drive.google.com/file/d/1zyHEGE7yxplEAz8yNbrE8qhEG76Ui8o-/view?usp=sharing', '_blank');
@@ -23,13 +25,15 @@ const HikeGameEngine = ({ patrol }) => {
 
   const useHelpBook = () => {
     if (hintRevealed) return;
-    
-    if (window.confirm("هل تريد استخدام كتاب المساعدة؟ سيتم خصم 5 نقاط من رصيدك!")) {
-      setScore(s => s - 5);
-      setHintRevealed(true);
-      setPenaltyMessage("تم خصم 5 نقاط لاستخدام المساعدة ⚠️");
-      setTimeout(() => setPenaltyMessage(null), 3000);
-    }
+    setShowConfirmModal(true);
+  };
+
+  const confirmHelp = () => {
+    setShowConfirmModal(false);
+    setScore(s => s - GAME_CONFIG.HELP_PENALTY);
+    setHintRevealed(true);
+    setPenaltyMessage(`تم خصم ${GAME_CONFIG.HELP_PENALTY} نقاط لاستخدام المساعدة ⚠️`);
+    setTimeout(() => setPenaltyMessage(null), 3000);
   };
 
   useEffect(() => {
@@ -82,21 +86,7 @@ const HikeGameEngine = ({ patrol }) => {
         
       {!gameFinished ? (
         <>
-          <div style={{ 
-            background: 'rgba(255,255,255,0.9)', 
-            padding: '0.5rem 1rem', 
-            borderRadius: '20px',
-            marginBottom: '1rem',
-            fontWeight: 'bold',
-            color: '#3e2723',
-            display: 'flex',
-            gap: '1rem',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-            direction: 'rtl',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            justifyContent: 'center'
-          }}>
+          <div className="stats-bar">
             <span>📌 مرحلة: {currentLevel.index} / {levels.length}</span>
             <span>⭐ الصعوبة: {currentLevel.difficulty === 'easy' ? 'سهل' : currentLevel.difficulty === 'medium' ? 'وسط' : 'صعب'}</span>
             <span style={{ color: score < 0 ? 'red' : 'inherit' }}>⚜️ نقاطي: {score}</span>
@@ -104,17 +94,8 @@ const HikeGameEngine = ({ patrol }) => {
             <div style={{ display: 'flex', gap: '0.5rem' }}>
               <button 
                 onClick={openPdf}
-                style={{
-                  background: '#e67e22',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '50%',
-                  width: '30px',
-                  height: '30px',
-                  cursor: 'pointer',
-                  fontWeight: 'bold',
-                  title: 'فتح ملف PDF للمراجعة'
-                }}
+                className="btn-icon-round"
+                title='فتح ملف PDF للمراجعة'
               >
                 ?
               </button>
@@ -122,19 +103,7 @@ const HikeGameEngine = ({ patrol }) => {
               <button 
                 onClick={useHelpBook}
                 disabled={hintRevealed}
-                style={{
-                  background: hintRevealed ? '#ccc' : '#d35400',
-                  color: 'white',
-                  border: 'none',
-                  padding: '5px 10px',
-                  borderRadius: '15px',
-                  cursor: hintRevealed ? 'default' : 'pointer',
-                  fontWeight: 'bold',
-                  fontSize: '0.8rem',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '5px'
-                }}
+                className="btn-help"
                 title="استخدام المساعدة (-5 نقاط)"
               >
                 📖 {hintRevealed ? "تم الكشف" : "مساعدة (-5)"}
@@ -144,26 +113,19 @@ const HikeGameEngine = ({ patrol }) => {
               <img 
                 src="/المجموعة.png" 
                 alt="Group Logo" 
-                style={{ 
-                  height: '40px', 
-                  width: 'auto', 
-                  marginLeft: '0.5rem',
-                  filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.3))'
-                }} 
+                className="mini-logo" 
               />
             </div>
           </div>
 
           {penaltyMessage && (
-            <div style={{ 
-              background: '#ffdddd', color: 'red', padding: '0.5rem', borderRadius: '5px', marginBottom: '1rem', animation: 'fadeIn 0.5s' 
-            }}>
+            <div className="penalty-msg">
               {penaltyMessage}
             </div>
           )}
 
           {hintRevealed && (
-            <div className="hint-box" style={{ background: '#e3f2fd', borderRight: '4px solid #2196f3', marginBottom: '1rem' }}>
+            <div className="hint-box hint-box-revealed">
               ℹ️ <strong>مساعدة:</strong> مفتاح الإجابة هو: <span style={{ fontWeight: 'bold', color: '#d35400' }}>{currentLevel.key || currentLevel.answer}</span>
             </div>
           )}
@@ -178,6 +140,19 @@ const HikeGameEngine = ({ patrol }) => {
         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <PatrolReport patrol={patrol} score={score} timeTaken={Math.floor((endTime - startTime) / 1000) + " ثانية"} />
           <Leaderboard />
+        </div>
+      )}
+
+      {showConfirmModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3 style={{ color: 'var(--primary)', marginBottom: '1rem' }}>هل أنت متأكد؟</h3>
+            <p>هل تريد استخدام كتاب المساعدة؟ سيتم خصم <strong>{GAME_CONFIG.HELP_PENALTY} نقاط</strong> من رصيدك!</p>
+            <div className="modal-actions">
+              <button className="btn-cancel" onClick={() => setShowConfirmModal(false)}>تراجع</button>
+              <button className="btn-confirm" onClick={confirmHelp}>نعم، استخدم المساعدة</button>
+            </div>
+          </div>
         </div>
       )}
     </div>
